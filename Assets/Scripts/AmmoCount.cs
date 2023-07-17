@@ -12,6 +12,7 @@ public class AmmoCount : MonoBehaviour
     private void Start()
     {
         updateAmmo();
+
     }
     public void updateAmmo()
     {
