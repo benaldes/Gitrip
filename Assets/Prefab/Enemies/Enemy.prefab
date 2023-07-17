@@ -121,7 +121,7 @@ Transform:
   m_Children:
   - {fileID: 387231368846475287}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4515543791277334234
 MonoBehaviour:
@@ -255,12 +255,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemeyDamage: 10
-  HP: 10
+  HP: 30
   DamageTimer: 1
   Timer: 0
   player: {fileID: 0}
   thisEnemy: {fileID: 0}
   DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  DeathAnimator: {fileID: 0}
 --- !u!50 &3794904876847359510
 Rigidbody2D:
   serializedVersion: 4

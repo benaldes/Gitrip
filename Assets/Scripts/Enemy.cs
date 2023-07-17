@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public PlayerMovment player;
     public Rigidbody2D thisEnemy;
     public GameObject DamageNambersText;
+    public Animator DeathAnimator;
     void Start()
     {
         thisEnemy = gameObject.GetComponent<Rigidbody2D>();
@@ -23,10 +24,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
          Timer += Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.Q)) 
-        {
-            //thisEnemy.AddForce(new Vector2(2000,2000), ForceMode2D.Force);
-        }
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,6 +54,13 @@ public class Enemy : MonoBehaviour
         
         DamageNumbers();
     }
+
+    private IEnumerator Death()
+    {
+        DeathAnimator.enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
+    }
     public void Knockback(Vector2 direction , float Knockbackforce)
     {
         thisEnemy.AddForce(direction * Knockbackforce, ForceMode2D.Force);
@@ -66,4 +70,5 @@ public class Enemy : MonoBehaviour
         var DMGNUM = Instantiate(DamageNambersText,transform.position,Quaternion.identity,transform);
         DMGNUM.GetComponent<TextMeshPro>().text = HP.ToString();
     }
+
 }
