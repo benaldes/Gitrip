@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D thisEnemy;
     public GameObject DamageNambersText;
     public Animator DeathAnimator;
+    public Collider2D collider2D;
     void Start()
     {
         thisEnemy = gameObject.GetComponent<Rigidbody2D>();
@@ -49,7 +50,9 @@ public class Enemy : MonoBehaviour
         HP -= DMG;
         if( HP <= 0 )
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            
+            StartCoroutine(Death());
         }
         
         DamageNumbers();
@@ -57,8 +60,9 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Death()
     {
-        DeathAnimator.enabled = true;
-        yield return new WaitForSeconds(0.3f);
+        DeathAnimator.SetBool("Dead", true);
+        Destroy(collider2D);
+        yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
     }
     public void Knockback(Vector2 direction , float Knockbackforce)
