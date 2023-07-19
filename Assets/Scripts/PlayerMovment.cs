@@ -28,6 +28,7 @@ public class PlayerMovment : MonoBehaviour
     public AudioSource PlayerGetHitSound;
     public AudioSource PlayerDeathSound;
     public AudioSource PlayerGrassWalk;
+    public PauseMenu pauseMenu;
 
     private float walksoundtimer;
     private Vector2 Move;
@@ -64,11 +65,10 @@ public class PlayerMovment : MonoBehaviour
         }
         animator.SetFloat("speed", Horizontal * Horizontal + Vertical * Vertical);
 
-        if(Input.GetKeyDown(KeyCode.Space)) 
-        {           
-            MeleeAttack();     
-        }
-        if(HP <= 0 && PlayerDeathSoundBool) 
+        if(Input.GetKeyDown(KeyCode.Space)) MeleeAttack();
+        if (Input.GetKeyDown(KeyCode.Escape)) pauseMenu.SetPauseMenu();
+
+        if (HP <= 0 && PlayerDeathSoundBool) 
         {
             PlayerDeathSound.Play();
             PlayerDeathSoundBool = false;

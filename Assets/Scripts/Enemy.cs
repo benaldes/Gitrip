@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
 {
     public int EnemeyDamage = 10;
     public int HP = 10;
-
     public float DamageTimer = 1f;
     public float Timer = 0f;
 
@@ -17,15 +16,33 @@ public class Enemy : MonoBehaviour
     public GameObject DamageNambersText;
     public Animator DeathAnimator;
     public Collider2D collider2D;
+
+    private Vector3 _currentPoint;
+    private bool _isDead = false;
+
+
     void Start()
     {
         thisEnemy = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+        _currentPoint = transform.position;
     }
     private void Update()
     {
          Timer += Time.deltaTime;
-        
+         DirectionSwitch();
+    }
+    private void DirectionSwitch()
+    {
+        if (transform.position.x > _currentPoint.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (transform.position.x < _currentPoint.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        _currentPoint.x = transform.position.x;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,17 +67,16 @@ public class Enemy : MonoBehaviour
         HP -= DMG;
         if( HP <= 0 )
         {
-            //Destroy(gameObject);
-            
+            _isDead = true;
             StartCoroutine(Death());
         }
-        
-        DamageNumbers();
+        if(!_isDead) DamageNumbers();
+
     }
 
     private IEnumerator Death()
     {
-        DeathAnimator.SetBool("Dead", true);
+        DeathAnimator.SetBool("Dead", _isDead);
         Destroy(collider2D);
         yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
