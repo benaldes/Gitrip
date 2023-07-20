@@ -9,13 +9,17 @@ public class shot : MonoBehaviour
     public int Ammo = 10;
     public AmmoCount ammoCount;
     public AudioSource GunShot;
+    public PlayerMovment player;
 
+    private float _attackSpeedTimer = 0f;
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && Ammo > 0)    
+        if(Input.GetButton("Fire1") && Ammo > 0 && _attackSpeedTimer > player.ActualAttackSpeed)    
         {
+            _attackSpeedTimer = 0f;
             Shot();
         }
+        _attackSpeedTimer += Time.deltaTime;
        
     }
     private void Shot()

@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public GameObject DamageNambersText;
     public Animator DeathAnimator;
     public Collider2D collider2D;
+    public SpriteRenderer Sprite;
 
     private Vector3 _currentPoint;
     private bool _isDead = false;
@@ -36,11 +37,11 @@ public class Enemy : MonoBehaviour
     {
         if (transform.position.x > _currentPoint.x)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            Sprite.flipX = true;
         }
         else if (transform.position.x < _currentPoint.x)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            Sprite.flipX = false;
         }
         _currentPoint.x = transform.position.x;
     }
