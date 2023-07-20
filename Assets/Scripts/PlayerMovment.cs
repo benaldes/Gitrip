@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovment : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerMovment : MonoBehaviour
     public AudioSource PlayerDeathSound;
     public AudioSource PlayerGrassWalk;
     public PauseMenu pauseMenu;
+    public GameObject DeathMenu;
 
     private float walksoundtimer;
     private Vector2 Move;
@@ -40,48 +42,69 @@ public class PlayerMovment : MonoBehaviour
     
     void Update()
     {
-        float Horizontal = Input.GetAxisRaw("Horizontal");
-        float Vertical = Input.GetAxisRaw("Vertical");
-        
-        Move = new Vector2(Horizontal, Vertical);
-        
-        if(Horizontal != 0 || Vertical != 0) 
-        {
-            direction = new Vector3(Horizontal, Vertical,0);
-            animator.SetFloat("Horizontal", Horizontal);
-            animator.SetFloat("Vertical", Vertical);
-            if(walksoundtimer > WalkSoundintrvel)
-            {
-                PlayerGrassWalk.Play();
-                walksoundtimer = 0;
-            }
-            else
-            {
-                walksoundtimer += Time.deltaTime;
-            }
-           
-
-
-        }
-        animator.SetFloat("speed", Horizontal * Horizontal + Vertical * Vertical);
-
-        if(Input.GetKeyDown(KeyCode.Space)) MeleeAttack();
-        if (Input.GetKeyDown(KeyCode.Escape)) pauseMenu.SetPauseMenu();
-
-        if (HP <= 0 && PlayerDeathSoundBool) 
-        {
-            PlayerDeathSound.Play();
-            PlayerDeathSoundBool = false;
-        }
         HPbar.SetHPSlider(HP);
-        meleeAttackTimer += Time.deltaTime;
-        Revolver();
+        if (HP > 0)
+        {
+            float Horizontal = Input.GetAxisRaw("Horizontal");
+            float Vertical = Input.GetAxisRaw("Vertical");
+
+            Move = new Vector2(Horizontal, Vertical);
+
+            if (Horizontal != 0 || Vertical != 0)
+            {
+                direction = new Vector3(Horizontal, Vertical, 0);
+                animator.SetFloat("Horizontal", Horizontal);
+                animator.SetFloat("Vertical", Vertical);
+                if (walksoundtimer > WalkSoundintrvel)
+                {
+                    PlayerGrassWalk.Play();
+                    walksoundtimer = 0;
+                }
+                else
+                {
+                    walksoundtimer += Time.deltaTime;
+                }
+
+
+
+            }
+            animator.SetFloat("speed", Horizontal * Horizontal + Vertical * Vertical);
+
+            if (Input.GetKeyDown(KeyCode.Space)) MeleeAttack();
+            if (Input.GetKeyDown(KeyCode.Escape)) pauseMenu.SetPauseMenu();
+            meleeAttackTimer += Time.deltaTime;
+            Revolver();
+        }
+        else if(PlayerDeathSoundBool)
+        {
+            StartCoroutine(Death());
+        }
+        
     }
     
     void FixedUpdate()
     {
         player.AddForce(Move * speed);
     }
+    private IEnumerator Death()
+    {
+        player.bodyType = RigidbodyType2D.Static;
+        PlayerDeathSound.Play();
+        PlayerDeathSoundBool = false;
+        animator.SetTrigger("Death");
+        Destroy(Guntransform);
+        yield return new WaitForSeconds(0.40f);
+        DeathMenu.SetActive(true);
+    }
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     private void Revolver()
     {
         Gun.position = player.position + new Vector2(0.5f,0);
@@ -125,9 +148,11 @@ public class PlayerMovment : MonoBehaviour
     }
     public void PlayerTakeDamage(int Damage)
     {
-        PlayerGetHitSound.Play();                                                                 
-        HP -= Damage;
-        
+        if(HP > 0)
+        {
+            PlayerGetHitSound.Play();
+            HP -= Damage;
+        }
     }
     
 }

@@ -27,6 +27,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void ExitGame()
     {
-        Environment.Exit(0);
+        Application.Quit();
     }
 }

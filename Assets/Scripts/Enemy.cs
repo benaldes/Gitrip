@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hj");
+        
         if (collision.gameObject.tag == "Player" && DamageTimer < Timer )
         {
             player.PlayerTakeDamage(EnemeyDamage);
@@ -62,16 +62,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDamage(int DMG)
+    public void takeDamage(int dmg)
     {
-        HP -= DMG;
+        if (!_isDead) DamageNumbers(dmg);
+        HP -= dmg;
         if( HP <= 0 )
         {
             _isDead = true;
             StartCoroutine(Death());
         }
-        if(!_isDead) DamageNumbers();
-
     }
 
     private IEnumerator Death()
@@ -85,10 +84,10 @@ public class Enemy : MonoBehaviour
     {
         thisEnemy.AddForce(direction * Knockbackforce, ForceMode2D.Force);
     }
-    public void DamageNumbers()
+    public void DamageNumbers(int dmg)
     {
-        var DMGNUM = Instantiate(DamageNambersText,transform.position,Quaternion.identity,transform);
-        DMGNUM.GetComponent<TextMeshPro>().text = HP.ToString();
+        var dmgNum = Instantiate(DamageNambersText,transform.position,Quaternion.identity,transform);
+        dmgNum.GetComponent<TextMeshPro>().text = dmg.ToString();
     }
 
 }
