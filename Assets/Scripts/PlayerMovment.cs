@@ -31,6 +31,7 @@ public class PlayerMovment : MonoBehaviour
     public AudioSource PlayerGrassWalk;
     public PauseMenu pauseMenu;
     public GameObject DeathMenu;
+    public CanvasGroup DeathMenuFadeIn;
 
     private float walksoundtimer;
     private Vector2 Move;
