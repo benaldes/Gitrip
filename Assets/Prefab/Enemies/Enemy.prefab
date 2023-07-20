@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1908863280375924951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2867706072080771094}
@@ -286,6 +286,7 @@ MonoBehaviour:
   DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   DeathAnimator: {fileID: 2929209454527798161}
   collider2D: {fileID: 8752496878584001287}
+  Sprite: {fileID: 7801750800104903370}
 --- !u!50 &3794904876847359510
 Rigidbody2D:
   serializedVersion: 4

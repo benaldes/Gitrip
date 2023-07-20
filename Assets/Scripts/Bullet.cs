@@ -11,15 +11,22 @@ public class Bullet : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         if (collision.gameObject.tag == "enemy")
         {
             collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<Enemy>().takeDamage(BulletDamage);
             
         }
-        if(collision.gameObject.tag != "Player" && collision.gameObject.tag != "PIckup")
+        if (collision.gameObject.tag == "FatMen")
+        {
+            Debug.LogError("fat hit 1");
+            //collision.GetComponent<AudioSource>().Play();
+            collision.GetComponent<FatMen>().takeDamage(BulletDamage);
+            Debug.LogError("fat hit 2");
+
+        }
+
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "PIckup")
         {
             Destroy(gameObject);
         }

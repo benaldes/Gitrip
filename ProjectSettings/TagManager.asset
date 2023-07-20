@@ -8,6 +8,7 @@ TagManager:
   - Revolver
   - AmmoCount
   - PIckup
+  - FatMen
   layers:
   - Default
   - TransparentFX

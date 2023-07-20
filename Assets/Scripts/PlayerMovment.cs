@@ -166,9 +166,6 @@ public class PlayerMovment : MonoBehaviour
     {
         if(DodgeCheck())
         {
-            //Dodge animat
-
-            Debug.LogError("Dodge");
             return;
         }
         if (HP > 0)
