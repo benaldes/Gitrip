@@ -20,7 +20,8 @@ public class FatMen : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _explode;
-
+    [SerializeField] private GameObject _explosion;    
+        
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,14 +35,14 @@ public class FatMen : MonoBehaviour
         _animator.SetTrigger("Explode");
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(ExplosionDelay);
-        
+        _explosion.SetActive(true);
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, ExplosionRadios, _playerLayers);
         foreach (Collider2D player in hitplayer)
         {
             player.GetComponent<PlayerMovment>().PlayerTakeDamage(Damage);
         }
         Destroy(_collider2D);
-        Destroy(_rigidbody2D);
+        //Destroy(_rigidbody2D);
         _audioSource.clip = _explode;
         _audioSource.Play();
         yield return new WaitForSeconds(1);
@@ -60,7 +61,7 @@ public class FatMen : MonoBehaviour
 
     private IEnumerator Death()
     {
-        //_animator.SetBool("Dead", _isDead);
+        _animator.SetTrigger("Death");
         Destroy(_collider2D);
         yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
