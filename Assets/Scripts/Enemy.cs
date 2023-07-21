@@ -45,15 +45,7 @@ public class Enemy : MonoBehaviour
         }
         _currentPoint.x = transform.position.x;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if (collision.gameObject.tag == "Player" && DamageTimer < Timer )
-        {
-            player.PlayerTakeDamage(EnemeyDamage);
-            Timer = 0f;
-        }
-    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && DamageTimer < Timer)

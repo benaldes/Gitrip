@@ -9,6 +9,7 @@ TagManager:
   - AmmoCount
   - PIckup
   - FatMen
+  - Sklislime
   layers:
   - Default
   - TransparentFX

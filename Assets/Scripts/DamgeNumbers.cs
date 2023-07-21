@@ -12,9 +12,8 @@ public class DamgeNumbers : MonoBehaviour
         //transform.position += offset;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Offset(Vector3 offset)
     {
-        
+        transform.position += offset;
     }
 }

@@ -15,15 +15,19 @@ public class Bullet : MonoBehaviour
         {
             collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<Enemy>().takeDamage(BulletDamage);
-            
+            Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "FatMen")
+        else if (collision.gameObject.tag == "FatMen")
         {
-            Debug.LogError("fat hit 1");
             //collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<FatMen>().takeDamage(BulletDamage);
-            Debug.LogError("fat hit 2");
-
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "Sklislime")
+        {
+            //collision.GetComponent<AudioSource>().Play();
+            collision.GetComponent<Sklislime>().takeDamage(BulletDamage);
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "PIckup")
