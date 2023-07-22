@@ -7,7 +7,6 @@ public class FatMen : MonoBehaviour
 {
     public int HP = 50;
     public int Damage = 30;
-    public float Speed;
     public float ExplosionRadios = 2;
     public float ExplosionDelay = 1;
 

@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212826691268633967}
+  - component: {fileID: 8005394253324095950}
   - component: {fileID: 5029635457113433735}
   - component: {fileID: 7469079114669507912}
   - component: {fileID: 9039793764844898040}
   - component: {fileID: 8171544691679917255}
   - component: {fileID: 4287164710181284911}
-  - component: {fileID: 8005394253324095950}
   - component: {fileID: 324162191758329733}
   m_Layer: 3
   m_Name: FatMen
@@ -39,6 +39,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8005394253324095950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616796631412648849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16196b0c6866c5d4dae300a2194418b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 40
+  Damage: 30
+  ExplosionRadios: 1.2
+  ExplosionDelay: 1
+  _playerLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  _animator: {fileID: 6398693652110895248}
+  _collider2D: {fileID: 4287164710181284911}
+  _rigidbody2D: {fileID: 8171544691679917255}
+  _audioSource: {fileID: 324162191758329733}
+  _explode: {fileID: 8300000, guid: c74cea5698e638a488df0e099a358321, type: 3}
+  _explosion: {fileID: 2884135867993392235}
 --- !u!114 &5029635457113433735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,33 +211,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.05481088}
   m_Size: {x: 1, y: 1.4123027}
   m_Direction: 0
---- !u!114 &8005394253324095950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616796631412648849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16196b0c6866c5d4dae300a2194418b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 10
-  Damage: 30
-  Speed: 0
-  ExplosionRadios: 1.2
-  ExplosionDelay: 1
-  _playerLayers:
-    serializedVersion: 2
-    m_Bits: 512
-  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
-  _animator: {fileID: 6398693652110895248}
-  _collider2D: {fileID: 4287164710181284911}
-  _rigidbody2D: {fileID: 8171544691679917255}
-  _audioSource: {fileID: 324162191758329733}
-  _explode: {fileID: 8300000, guid: c74cea5698e638a488df0e099a358321, type: 3}
-  _explosion: {fileID: 2884135867993392235}
 --- !u!82 &324162191758329733
 AudioSource:
   m_ObjectHideFlags: 0

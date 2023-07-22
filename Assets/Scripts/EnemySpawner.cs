@@ -1,34 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
     public float PlayerRadiosNotToSpawn = 1f, spawnTimer = 3f;
-    public GameObject Enemy;
     public Vector2 NoSpawnRadios = new Vector2 (3, 3);
     public Collider2D SpawnArea;
-    public GameObject[] EnemiesList;
+    public List<EnemyX> Enemies = new List<EnemyX>();
+    public int WaveNumber = 1;
+    public int WaveCount;
+    public float Timer = 0f;
+    public float WaveInterval = 10f;
+    public Transform ClockHandMin;
+    public AudioSource Clocksound;
     
     void Start()
     {
-        StartCoroutine(EnemySpawn());
+        //StartCoroutine(EnemySpawn());
     }
-    
-    IEnumerator EnemySpawn()
+    private void Update()
     {
-        SpawnEnemy(SpawnArea, EnemiesList);
-        yield return new WaitForSeconds(spawnTimer);
-        StartCoroutine(EnemySpawn());
-    }
-
-    public void SpawnEnemy(Collider2D SpawnAbleAreaCollider, GameObject[] enemies)
-    {
-        foreach (GameObject enemy in enemies)
+        Timer += Time.deltaTime;
+        MoveClock();
+        if (Timer > WaveInterval) WaveStart();
+        bool play = false;
+        if((WaveInterval - Timer) <= 2)
         {
-            Vector2 spawnPosition = GetRandomSpawnPosition(SpawnAbleAreaCollider);
-            GameObject spawnEnemies = Instantiate(enemy, spawnPosition, Quaternion.identity);
+            if(!Clocksound.isPlaying)
+            {
+                Clocksound.time = 0.6f;
+                Clocksound.Play();
+            }
+            
         }
+            
+    }
+    private void WaveStart() 
+    {
+
+        Timer = 0f;
+        WaveCount = WaveNumber * 10;
+        WaveNumber++;
+        StartCoroutine(EnemySpawnInterval());
+    }
+    IEnumerator EnemySpawnInterval()
+    {
+
+        while(WaveCount > 0)
+        {
+            EnemySpawn();
+            yield return new WaitForSeconds(Random.Range(0.1f,1));
+        }
+        
+    }
+    private void EnemySpawn()
+    {
+        int randEnemyId = Random.Range(0,Enemies.Count);
+        int enemyCost = Enemies[randEnemyId].Cost;
+        WaveCount -= enemyCost;
+        if (WaveCount > 0)
+        {
+            SpawnEnemy(Enemies[randEnemyId].EnemyPrefab);
+        }
+        else return;
+    }
+    public void SpawnEnemy(GameObject enemy)
+    {
+        
+        
+        Vector2 spawnPosition = GetRandomSpawnPosition(SpawnArea);
+        GameObject spawnEnemies = Instantiate(enemy, spawnPosition, Quaternion.identity);
+        
     }
     public Vector2 GetRandomSpawnPosition(Collider2D spawnAbleAreaCollider)
     {
@@ -83,7 +127,6 @@ public class EnemySpawner : MonoBehaviour
         return spawnPositon;
 
     }
-
     private Vector2 GetRandomPointInCollider(Collider2D collider, float offset = 3f)
     {   
         Bounds bounds = collider.bounds;
@@ -96,7 +139,23 @@ public class EnemySpawner : MonoBehaviour
         return new Vector2(randomX, randomY);
 
     }
-    
-    
 
+    private void ClockSound()
+    {
+        Clocksound.Play();
+    }
+    private void MoveClock()
+    {
+        float angle = 360 / WaveInterval;
+        float clockAngle = Timer * angle;
+        ClockHandMin.eulerAngles = new Vector3(0,0,-clockAngle);
+        
+    }
+}
+
+[System.Serializable]
+public class EnemyX
+{
+    public GameObject EnemyPrefab;
+    public int Cost;
 }

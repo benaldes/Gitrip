@@ -115,11 +115,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2867706072080771094}
+  - component: {fileID: 260555368723516993}
   - component: {fileID: 4515543791277334234}
   - component: {fileID: 5027364350308895666}
   - component: {fileID: 1351608646162885815}
   - component: {fileID: 8752496878584001287}
-  - component: {fileID: 260555368723516993}
   - component: {fileID: 3794904876847359510}
   - component: {fileID: -7165117614062561289}
   - component: {fileID: 1341181466436507215}
@@ -146,6 +146,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &260555368723516993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309902786621330850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965918136678e9f4199ba1b132e0e6f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemeyDamage: 10
+  HP: 30
+  DamageTimer: 1
+  Timer: 0
+  player: {fileID: 0}
+  thisEnemy: {fileID: 0}
+  DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  DeathAnimator: {fileID: 2929209454527798161}
+  collider2D: {fileID: 8752496878584001287}
+  Sprite: {fileID: 7801750800104903370}
 --- !u!114 &4515543791277334234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,28 +287,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &260555368723516993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2309902786621330850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965918136678e9f4199ba1b132e0e6f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemeyDamage: 10
-  HP: 30
-  DamageTimer: 1
-  Timer: 0
-  player: {fileID: 0}
-  thisEnemy: {fileID: 0}
-  DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
-  DeathAnimator: {fileID: 2929209454527798161}
-  collider2D: {fileID: 8752496878584001287}
-  Sprite: {fileID: 7801750800104903370}
 --- !u!50 &3794904876847359510
 Rigidbody2D:
   serializedVersion: 4
