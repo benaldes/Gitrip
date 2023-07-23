@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public int HP = 10;
     public float DamageTimer = 1f;
     public float Timer = 0f;
+    public int ExpGain = 1;
 
     public PlayerMovment player;
     public Rigidbody2D thisEnemy;
@@ -55,6 +56,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     public void takeDamage(int dmg)
     {
         if (!_isDead) DamageNumbers(dmg);
@@ -70,6 +72,7 @@ public class Enemy : MonoBehaviour
     {
         DeathAnimator.SetBool("Dead", _isDead);
         Destroy(collider2D);
+        player.Experience += ExpGain;
         yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
     }

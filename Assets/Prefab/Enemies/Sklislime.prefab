@@ -39,7 +39,7 @@ Transform:
   - {fileID: 4855178138500592508}
   - {fileID: 8387876161964522034}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5578625285453564765
 MonoBehaviour:
@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 40
   Damage: 20
+  ExpGain: 5
   DamageTimer: 1
   Timer: 0
   DeathSplitTimer: 1
@@ -450,7 +451,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -566,8 +567,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.5271004, g: 0.9716981, b: 0.6028338, a: 1}
-      maxColor: {r: 0.15686275, g: 1, b: 1, a: 1}
+      minColor: {r: 0.25882354, g: 0.58431375, b: 0.003921569, a: 1}
+      maxColor: {r: 0.69411767, g: 0.9607844, b: 0.4901961, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

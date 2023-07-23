@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FatMen : MonoBehaviour
@@ -9,9 +10,11 @@ public class FatMen : MonoBehaviour
     public int Damage = 30;
     public float ExplosionRadios = 2;
     public float ExplosionDelay = 1;
+    public int ExpGain = 2;
 
     private bool _isDead = false;
 
+    [SerializeField] private PlayerMovment _playerMovment;
     [SerializeField] private LayerMask _playerLayers;
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private Animator _animator;
@@ -19,9 +22,12 @@ public class FatMen : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _explode;
-    [SerializeField] private GameObject _explosion;    
-        
+    [SerializeField] private GameObject _explosion;
 
+    private void Start()
+    {
+        _playerMovment = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -47,6 +53,10 @@ public class FatMen : MonoBehaviour
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
+    public void Knockback(Vector2 direction, float Knockbackforce)
+    {
+        _rigidbody2D.AddForce(direction * Knockbackforce, ForceMode2D.Force);
+    }
     public void takeDamage(int dmg)
     {
         if (!_isDead) DamageNumbers(dmg);
@@ -62,7 +72,8 @@ public class FatMen : MonoBehaviour
     {
         _animator.SetTrigger("Death");
         Destroy(_collider2D);
-        yield return new WaitForSeconds(0.19f);
+        _playerMovment.Experience += ExpGain;
+        yield return new WaitForSeconds(0.19f);        
         Destroy(gameObject);
     }
     public void DamageNumbers(int dmg)

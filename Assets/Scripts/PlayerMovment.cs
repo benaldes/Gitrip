@@ -18,6 +18,10 @@ public class PlayerMovment : MonoBehaviour
     public float AttackSpeed = 10;
     public int DodgeChance = 10;
 
+    public int Level = 1;
+    public int Experience = 0;
+    public float ExperienceToLevelUp = 10;
+
     public float ActualAttackSpeed;
         
     public float AttackRange = 0.5f;
@@ -26,7 +30,6 @@ public class PlayerMovment : MonoBehaviour
     public float meleeAttackTimer = 0;
     public float WalkSoundintrvel = 2f;
 
-    
     public TextMeshProUGUI StatsText;
     public Animator animator;
     public HPBar HPbar;
@@ -43,20 +46,23 @@ public class PlayerMovment : MonoBehaviour
     public PauseMenu pauseMenu;
     public GameObject DeathMenu;
     public CanvasGroup DeathMenuFadeIn;
-    public GameObject AboveHeadText;
     public AudioClip DodgeSound, MeleeAttackSound;
+    public EXPBar ExpBar;
+     
 
     private float walksoundtimer;
     private Vector2 Move;
     private bool PlayerDeathSoundBool = true;
     private Vector2 MousePositon;
     [SerializeField] private Rigidbody2D player;
-    
+    [SerializeField] private GameObject AboveHeadText;
 
-    
+
+
     void Update()
     {
         HPbar.SetHPSlider(HP);
+        ExpBar.SetExpSlider();
         UpdateStats();
         if (HP > 0)
         {
@@ -152,9 +158,23 @@ public class PlayerMovment : MonoBehaviour
         Instantiate(meleeAtackShow, transform.position + direction, transform.rotation);
 
         foreach(Collider2D enemy in hitenemies)
-        {
-            enemy.GetComponent<Enemy>().takeDamage(PlayerDamage);
-            enemy.GetComponent<Enemy>().Knockback(direction , KnockbackForce);
+        {    
+            if (enemy.gameObject.tag == "enemy")
+            {               
+                enemy.GetComponent<Enemy>().takeDamage(PlayerDamage);
+                enemy.GetComponent<Enemy>().Knockback(direction, KnockbackForce);
+            }
+            else if (enemy.gameObject.tag == "FatMen")
+            {                
+                enemy.GetComponent<FatMen>().takeDamage(PlayerDamage);
+                enemy.GetComponent<FatMen>().Knockback(direction, KnockbackForce);
+            }
+            else if (enemy.gameObject.tag == "Sklislime")
+            {
+                enemy.GetComponent<Sklislime>().takeDamage(PlayerDamage);
+                enemy.GetComponent<Sklislime>().Knockback(direction, KnockbackForce);
+            }
+            
             
         }
     }
@@ -179,7 +199,7 @@ public class PlayerMovment : MonoBehaviour
         float index = UnityEngine.Random.Range(0,101);
         if (index < DodgeChance)
         {
-            DodgeShowText();
+            //DodgeShowText();
             PlayerAudio.clip = DodgeSound;
             PlayerAudio.Play();
             return true;

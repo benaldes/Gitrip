@@ -7,7 +7,7 @@ public class Sklislime : MonoBehaviour
 {
     public int HP = 20;
     public int Damage = 30;
-
+    public int ExpGain = 5;
     public float DamageTimer = 1f;
     public float Timer = 0f;
     public float DeathSplitTimer = 1f;
@@ -24,7 +24,10 @@ public class Sklislime : MonoBehaviour
     [SerializeField] private AudioSource _sklislimeAudioSource;
 
 
-
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+    }
     void Update()
     {
         Timer += Time.deltaTime;
@@ -36,8 +39,12 @@ public class Sklislime : MonoBehaviour
         {
             _player.PlayerTakeDamage(Damage);
 
-            Timer = 0;
+            Timer = 0f;
         }
+    }
+    public void Knockback(Vector2 direction, float Knockbackforce)
+    {
+        _sklislimeRigidbody2D.AddForce(direction * Knockbackforce, ForceMode2D.Force);
     }
 
     public void takeDamage(int dmg)
@@ -61,6 +68,7 @@ public class Sklislime : MonoBehaviour
         _sklislimeRigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         Destroy(_sklislimeSprite); 
         Destroy(_sklislimeCollider2D);
+        _player.Experience += ExpGain;
         yield return new WaitForSeconds(DeathSplitTimer);
         Destroy(gameObject);
     }

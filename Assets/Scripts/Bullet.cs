@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            collision.GetComponent<AudioSource>().Play();
+            //collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<Enemy>().takeDamage(BulletDamage);
             Destroy(gameObject);
         }
