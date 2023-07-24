@@ -11,7 +11,4 @@ public class HPBar : MonoBehaviour
     {
         slider.value = HP;
     }
-
-
-
 }

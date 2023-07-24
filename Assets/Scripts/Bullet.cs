@@ -5,28 +5,31 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int BulletDamage = 10;
+    public PlayerMovment player;
     private float timer = 0;
 
-    
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "enemy")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<Enemy>().takeDamage(BulletDamage);
+            collision.GetComponent<Enemy>().takeDamage(player.PlayerDamage);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "FatMen")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<FatMen>().takeDamage(BulletDamage);
+            collision.GetComponent<FatMen>().takeDamage(player.PlayerDamage);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Sklislime")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<Sklislime>().takeDamage(BulletDamage);
+            collision.GetComponent<Sklislime>().takeDamage(player.PlayerDamage);
             Destroy(gameObject);
         }
 

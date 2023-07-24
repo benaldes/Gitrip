@@ -9,6 +9,8 @@ public class EXPBar : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI LevelText;
     public PlayerMovment Player;
+    public GameObject levelUP;
+    public LeveLUP lvlScript;
 
     public void SetExpSlider()
     {
@@ -25,5 +27,7 @@ public class EXPBar : MonoBehaviour
         Player.ExperienceToLevelUp *= 2f;
         LevelText.text = ("lvl: " +  Player.Level);
         SetExpSlider();
+        levelUP.SetActive(true);
+        lvlScript.LevelUp();
     }
 }

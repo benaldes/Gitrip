@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class PlayerMovment : MonoBehaviour
 {
+    public int MaxHP = 100;
     public int HP = 100;
     public int PlayerDamage = 10;
     public int speed = 50;
@@ -85,9 +86,6 @@ public class PlayerMovment : MonoBehaviour
                 {
                     walksoundtimer += Time.deltaTime;
                 }
-
-
-
             }
             animator.SetFloat("speed", Horizontal * Horizontal + Vertical * Vertical);
 
