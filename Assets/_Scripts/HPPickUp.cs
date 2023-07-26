@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class HPPickUp : MonoBehaviour
 {
-    public PlayerMovment Player;
-    public AudioSource AmmoPickUp;
+    [SerializeField] private PlayerScript _playerScript;
+    [SerializeField] private AudioSource _hpPickUpSound;
 
-    private void Start()
+    private void Awake()
     {
-        AmmoPickUp = GameObject.Find("HP").GetComponent<AudioSource>();
+        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        _hpPickUpSound = GameObject.Find("HP").GetComponent<AudioSource>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -21,7 +23,8 @@ public class HPPickUp : MonoBehaviour
     }
     public void PickUp()
     {
-        AmmoPickUp.Play();
-        Player.HP += 30;
+        _hpPickUpSound.Play();
+        _playerScript.HP += 30;
+
     }
 }

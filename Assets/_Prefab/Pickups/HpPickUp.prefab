@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dca7825c8650ac4b80e9f3f2bbdbe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 5195661774757871282, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _Player: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
   AmmoPickUp: {fileID: 0}
 --- !u!61 &7559993953409387750
 BoxCollider2D:

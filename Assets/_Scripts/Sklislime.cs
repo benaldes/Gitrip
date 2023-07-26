@@ -13,7 +13,7 @@ public class Sklislime : MonoBehaviour
     public float DeathSplitTimer = 1f;
 
     private bool _isDead = false;
-    [SerializeField] private PlayerMovment _player;
+    [SerializeField] private PlayerScript _player;
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private GameObject _sklislime;
     [SerializeField] private GameObject _splitParticle;
@@ -26,7 +26,7 @@ public class Sklislime : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
     void Update()
     {

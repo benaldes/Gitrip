@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class LeveLUP : MonoBehaviour
+public class LevelUpPanal : MonoBehaviour
 {
-    public PlayerMovment Player;
+    public PlayerScript Player;
     public List<string> LevelUpStats = new List<string>();
     public HashSet<string> StatsList = new HashSet<string>();
     public TextMeshProUGUI Button1;
@@ -13,9 +13,12 @@ public class LeveLUP : MonoBehaviour
     public TextMeshProUGUI Button3;
     private List<string> StatsToLevel = new List<string>();
     public AudioSource LevelUpSound;
-    
- 
- 
+
+    private void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+    }
+
     public void LevelUp()
     {
         LevelUpSound.Play();
@@ -40,7 +43,7 @@ public class LeveLUP : MonoBehaviour
                 Player.PlayerDamage += 2;
                 break;
             case "SPD":
-                Player.speed += 10;
+                Player.WalkSpeed += 10;
                 break;
             case "HP":
                 Player.MaxHP += 10;
@@ -56,7 +59,7 @@ public class LeveLUP : MonoBehaviour
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
-    
+
     public void Button_1()
     {
         AddStats(Button1.text);
@@ -69,7 +72,4 @@ public class LeveLUP : MonoBehaviour
     {
         AddStats(Button3.text);
     }
-    
-
-
 }

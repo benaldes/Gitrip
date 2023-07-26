@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PickUpAmmo : MonoBehaviour
 {
-    public shot Revolver;
-    public AmmoCount ammoCount;
     public AudioSource ammoPickUpSound;
+    [SerializeField] private PlayerScript _playerScript;
 
     private void Start()
     {
-        Revolver = GameObject.FindGameObjectWithTag("Revolver").GetComponent<shot>();
-        ammoCount = GameObject.FindGameObjectWithTag("AmmoCount").GetComponent<AmmoCount>();
+        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         ammoPickUpSound = GameObject.Find("AmmoCount").GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +17,6 @@ public class PickUpAmmo : MonoBehaviour
          if (collision.gameObject.tag == "Player")
          {
             PickUp();
-            ammoCount.updateAmmo();
             Destroy(gameObject);
          }
         
@@ -27,6 +24,6 @@ public class PickUpAmmo : MonoBehaviour
     public void PickUp()
     {
         ammoPickUpSound.Play();
-        Revolver.Ammo += 5;
+        _playerScript.AmmoCount += 5;
     }
 }

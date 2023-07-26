@@ -14,7 +14,7 @@ public class FatMen : MonoBehaviour
 
     private bool _isDead = false;
 
-    [SerializeField] private PlayerMovment _playerMovment;
+    [SerializeField] private PlayerScript _playerScript;
     [SerializeField] private LayerMask _playerLayers;
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private Animator _animator;
@@ -26,7 +26,7 @@ public class FatMen : MonoBehaviour
 
     private void Start()
     {
-        _playerMovment = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,7 +44,7 @@ public class FatMen : MonoBehaviour
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, ExplosionRadios, _playerLayers);
         foreach (Collider2D player in hitplayer)
         {
-            player.GetComponent<PlayerMovment>().PlayerTakeDamage(Damage);
+            player.GetComponent<PlayerScript>().PlayerTakeDamage(Damage);
         }
         Destroy(_collider2D);
         //Destroy(_rigidbody2D);
@@ -72,7 +72,7 @@ public class FatMen : MonoBehaviour
     {
         _animator.SetTrigger("Death");
         Destroy(_collider2D);
-        _playerMovment.Experience += ExpGain;
+        _playerScript.Experience += ExpGain;
         yield return new WaitForSeconds(0.19f);        
         Destroy(gameObject);
     }

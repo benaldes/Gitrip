@@ -8,15 +8,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private PlayerScript _playerScript;
 
-    [SerializeField] private LevelUp _levelUpScript;
+    public GameObject LevelUpPanal;
+
+    [SerializeField] private LevelUpPanal _levelUpScript;
     [SerializeField] private Slider _HPBar;
     [SerializeField] private Slider _ExpBar;
 
+    private PlayerScript _playerScript;
+
     private void Awake()
     {
-        _levelUpScript = GetComponent<LevelUp>();
+        
         _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
 
         if (_playerScript != null)
@@ -41,8 +44,17 @@ public class GameManager : MonoBehaviour
         _ExpBar.value = _playerScript.Experience;
         if (_ExpBar.value >= _ExpBar.maxValue)
         {
-            //LevelUp();
+
+            Levelup();
         }
     }
-    
+    public void Levelup()
+    {
+        _playerScript.Level++;
+        _playerScript.ExperienceToLevelUp *= 2f;        
+
+        LevelUpPanal.SetActive(true);
+        _levelUpScript.LevelUp();
+    }
+
 }

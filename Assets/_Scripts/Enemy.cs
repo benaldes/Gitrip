@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float Timer = 0f;
     public int ExpGain = 1;
 
-    public PlayerMovment player;
+    public PlayerScript player;
     public Rigidbody2D thisEnemy;
     public GameObject DamageNambersText;
     public Animator DeathAnimator;
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         thisEnemy = gameObject.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         _currentPoint = transform.position;
     }
     private void Update()

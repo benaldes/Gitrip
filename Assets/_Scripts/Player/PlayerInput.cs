@@ -12,11 +12,15 @@ public class PlayerInput : MonoBehaviour
     {
         _playerScript = GetComponent<PlayerScript>();
     }
-    private void Update()
+    public  void PlayerInputFunc()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Diraction = new Vector3 (horizontal, vertical);
+
+        if(Input.GetKeyDown(KeyCode.Space)) _playerScript.MeleeAttack();
+        if(Input.GetKeyDown(KeyCode.Escape)) _playerScript.PauseMenu(); 
+        if(Input.GetButton("Fire1")) _playerScript.GunShot();
         
     }
 }

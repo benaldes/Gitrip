@@ -6,21 +6,22 @@ public class Shotgun : MonoBehaviour
 {
     public GameObject Bullet;
     public float BulletForce = 1.0f;
-    public AmmoCount ammoCount;
+    //public AmmoCount ammoCount;
     public AudioSource GunShot;
-    public PlayerMovment player;
+    public PlayerScript player;
     public GameObject PlayerTransform;
     public GameObject FirePoint;
     private Vector2 MousePositon;
     public Camera cam;
     public Rigidbody2D Gun;
     public SpriteRenderer ShotgunSprite;
-    public shot Ammo;
+
 
     private float _attackSpeedTimer = 0f;
+    [SerializeField] private PlayerScript _playerScript;
     void Update()
     {
-        if (Input.GetButton("Fire1") && Ammo.Ammo > 0 && _attackSpeedTimer > player.ActualAttackSpeed)
+        if (Input.GetButton("Fire1") && _playerScript.AmmoCount > 0 && _attackSpeedTimer > player.ActualAttackSpeed)
         {
             _attackSpeedTimer = 0f;
             Shot();
@@ -33,8 +34,7 @@ public class Shotgun : MonoBehaviour
     private void Shot()
     {
         GunShot.Play();
-        Ammo.Ammo -= 5;
-        ammoCount.updateAmmo();
+        //Ammo.Ammo -= 5;
         GameObject bullet = Instantiate(Bullet, FirePoint.transform.position, FirePoint.transform.rotation);
         Rigidbody2D bulletrig = bullet.GetComponent<Rigidbody2D>();
         bulletrig.AddForce(FirePoint.transform.right * BulletForce, ForceMode2D.Impulse);

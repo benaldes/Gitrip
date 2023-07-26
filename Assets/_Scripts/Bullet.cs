@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public PlayerMovment player;
+    public PlayerScript player;
     private float timer = 0;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
