@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,6 +56,14 @@ public class GameManager : MonoBehaviour
 
         LevelUpPanal.SetActive(true);
         _levelUpScript.LevelUp();
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
 }

@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 1288827236942996416}
   - component: {fileID: 3698770872547271145}
   - component: {fileID: 4484666492002431791}
+  - component: {fileID: 5462890736954553451}
   m_Layer: 9
   m_Name: revolver
   m_TagString: Untagged
@@ -160,7 +161,7 @@ Transform:
   m_Children:
   - {fileID: 7204351704141309808}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3698770872547271145
 SpriteRenderer:
@@ -241,3 +242,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5462890736954553451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131008868949983973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d593b869d816d0d49b5b94bf6fa9c83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dmg: 10
+  _fireRate: 0.3
+  _bulletSpeed: 10
+  _bullet: {fileID: 1860706049015914, guid: 72ac23f939804d84eb9ad2bc3b2a7fae, type: 3}
+  _gunShotPoint: {fileID: 2879837142388219879}
+  _gun: {fileID: 4131008868949983973}
+  _player: {fileID: 1355646798857723919, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _camera: {fileID: 0}
+  _gunShotSound: {fileID: 8300000, guid: 0add8c6037704464fa071332ad4ecd17, type: 3}

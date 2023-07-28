@@ -69,7 +69,7 @@ public class PlayerScript : MonoBehaviour
         _PlayerAudio.clip = _playerDeathSound;
         _PlayerAudio.Play();
         _playerAnimator.SetTrigger("Death");
-        Destroy(_playerCombat.CurrentWeapon);
+        //Destroy(_playerCombat.CurrentWeapon);
         yield return new WaitForSeconds(0.40f);
         DeathPanel.SetActive(true);
     }
@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (HP > MaxHP) { HP = MaxHP; }
         ActualAttackSpeed = 5f / AttackSpeed;
-        _AmmoText.text = AmmoCount.ToString();
+        _AmmoText.text = "Ammo: " + AmmoCount.ToString();
         StatsText.text = "Damage: " + PlayerDamage.ToString() +
         "\nSpeed: " + WalkSpeed.ToString() +
         "\nAttack Speed: " + AttackSpeed.ToString() +
@@ -127,11 +127,7 @@ public class PlayerScript : MonoBehaviour
         var dodgeText = Instantiate(AboveHeadDamageText, transform.position, Quaternion.identity, transform);
         dodgeText.GetComponent<TextMeshPro>().text = "Dodge";
     }
-    public void GunShot()
-    {
 
-        _playerCombat.GunShot();
-    }
 
 
 }

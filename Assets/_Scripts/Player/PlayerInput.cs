@@ -19,8 +19,7 @@ public class PlayerInput : MonoBehaviour
         Diraction = new Vector3 (horizontal, vertical);
 
         if(Input.GetKeyDown(KeyCode.Space)) _playerScript.MeleeAttack();
-        if(Input.GetKeyDown(KeyCode.Escape)) _playerScript.PauseMenu(); 
-        if(Input.GetButton("Fire1")) _playerScript.GunShot();
+        if(Input.GetKeyDown(KeyCode.Escape)) _playerScript.PauseMenu();       
         
     }
 }
