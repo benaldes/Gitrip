@@ -1,30 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Gun : MonoBehaviour
 {
+    #region  Gun Stats
     [SerializeField] private int _dmg;
     [SerializeField] private float _fireRate;
     [SerializeField] private int _bulletSpeed;
     [SerializeField] private int _ammoCostForShot;
     [SerializeField] private int _bulletSpread;
     [SerializeField] private int _numberOfBullets;
-    private float _gunShotTimer;
-
+    #endregion
+    #region refrence
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gunShotPoint;
     [SerializeField] private GameObject _gun;
     [SerializeField] private GameObject _player;
     [SerializeField] private Camera _camera;
     [SerializeField] private AudioClip _gunShotSound;
-
     private Rigidbody2D _currentWeaponRigidbody2D;
     private PlayerScript _playerScript;
     private AudioSource _audioSource;
+    #endregion
 
+    private float _gunShotTimer;
     public Vector3 test;
+    public List<int> angleList = new List<int>();
+    public List<int> testint = new List<int>();
+    public int check = 0;
 
     private void Awake()
     {
@@ -64,29 +72,41 @@ public class Gun : MonoBehaviour
         _audioSource.clip = _gunShotSound;
         _audioSource.Play();
         _playerScript.AmmoCount -= _ammoCostForShot;
-        /*
-        if(_numberOfBullets%2 == 0)
+        angleList.Clear();
+        testint.Clear();
+        if (_numberOfBullets == 1)
         {
-            float spreadStart = _bulletSpread/2;
-            for (int i = _numberOfBullets; i >= 0; i -= 2)
+            angleList.Add(0);
+        }
+        else if (_numberOfBullets % 2 == 0)
+        {
+            int spreadStart = _bulletSpread / 2;
+            angleList.Add(spreadStart);
+            angleList.Add(-spreadStart);
+            for (int i = 1; i < _numberOfBullets / 2; i++)
             {
-                GameObject shot = Instantiate(_bullet, _gunShotPoint.transform.position, _gun.transform.rotation);
-                Rigidbody2D shotrigidbody2D = shot.GetComponent<Rigidbody2D>();
-                shotrigidbody2D.AddForce(_gun.transform.right * _bulletSpeed, ForceMode2D.Impulse);
+                testint.Add(i);
+                angleList.Add(spreadStart + (_bulletSpread * i));
+                angleList.Add(-spreadStart - (_bulletSpread * i));
             }
         }
-        else
+        else if (_numberOfBullets % 2 != 0)
         {
-
+            angleList.Add(0);
+            for (int i = 1; i < _numberOfBullets / 2 + 1; i++)
+            {
+                angleList.Add(_bulletSpread * i);
+                angleList.Add(-_bulletSpread * i);
+            }
         }
-        */
-        
-        GameObject bullet = Instantiate(_bullet, _gunShotPoint.transform.position , _gun.transform.rotation);
-        Rigidbody2D bulletrig = bullet.GetComponent<Rigidbody2D>();
-        //_gunShotPoint.transform.eulerAngles.z = 45f;
-        bulletrig.AddForce(_gunShotPoint.transform.right * _bulletSpeed  , ForceMode2D.Impulse);
-        
-        
+
+        foreach (int angle in angleList)
+        {
+            _gunShotPoint.transform.localRotation = Quaternion.Euler(0, 0, angle);
+            GameObject shot = Instantiate(_bullet, _gunShotPoint.transform.position, _gun.transform.rotation);
+            Rigidbody2D shotrigidbody2D = shot.GetComponent<Rigidbody2D>();
+            shotrigidbody2D.AddForce(_gunShotPoint.transform.right * _bulletSpeed, ForceMode2D.Impulse);
+        }
 
     }
 }
