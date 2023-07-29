@@ -26,11 +26,10 @@ public class PickUpSpawner : MonoBehaviour
 
     public void SpawnPickUps(Collider2D SpawnAbleAreaCollider, GameObject[] PickUps)
     {
-        foreach (GameObject PickUp in PickUps)
-        {
+
             Vector2 spawnPosition = GetRandomSpawnPosition(SpawnAbleAreaCollider);
-            GameObject spawnPickUps = Instantiate(PickUp, spawnPosition, Quaternion.identity);
-        }
+            GameObject spawnPickUps = Instantiate(PickUps[Random.Range(0,PickUps.Length-1)], spawnPosition, Quaternion.identity);
+
     }
     public Vector2 GetRandomSpawnPosition(Collider2D spawnAbleAreaCollider)
     {

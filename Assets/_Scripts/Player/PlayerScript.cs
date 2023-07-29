@@ -20,19 +20,21 @@ public class PlayerScript : MonoBehaviour
     public int Experience = 0;
     public float ExperienceToLevelUp = 10;
 
-    private bool _playerIsDead = false;
+    public bool _playerIsDead = false;
     #endregion
     #region Player Scrip
     private PlayerInput _playerInput;
     private PlayerCombat _playerCombat;
     private PlayerMovement _playerMovement;
+    private Rigidbody2D _playerRigidbody2D;
+    private AudioSource _PlayerAudio;
+    [SerializeField] private SpriteRenderer _PlayerSpriteRenderer;
+    [SerializeField] private Collider2D _playerTriggerCollider2D;
+    [SerializeField] private Collider2D _playerCollider2D;
     [SerializeField] private AudioClip _playerDeathSound;
     [SerializeField] private AudioClip _PlayerGetHitSound;
     [SerializeField] private AudioClip _playerDodgeSound;
-    [SerializeField] private AudioSource _PlayerAudio;
     [SerializeField] private Animator _playerAnimator;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private Rigidbody2D _playerRigidbody2D;
     #endregion
 
     [SerializeField] private TextMeshProUGUI _AmmoText;
@@ -44,7 +46,6 @@ public class PlayerScript : MonoBehaviour
     private void Awake()
     {
         _PlayerAudio = GetComponent<AudioSource>();
-        _player = GetComponent<GameObject>();
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -69,7 +70,6 @@ public class PlayerScript : MonoBehaviour
         _PlayerAudio.clip = _playerDeathSound;
         _PlayerAudio.Play();
         _playerAnimator.SetTrigger("Death");
-        //Destroy(_playerCombat.CurrentWeapon);
         yield return new WaitForSeconds(0.40f);
         DeathPanel.SetActive(true);
     }
@@ -128,7 +128,13 @@ public class PlayerScript : MonoBehaviour
         dodgeText.GetComponent<TextMeshPro>().text = "Dodge";
     }
 
-
-
+    public IEnumerator Invulnerability()
+    {
+        Physics2D.IgnoreLayerCollision(3, 9, true);
+        _PlayerSpriteRenderer.color = Color.blue;
+        yield return new WaitForSeconds(5);
+        _PlayerSpriteRenderer.color = Color.white;
+        Physics2D.IgnoreLayerCollision(3,9,false);
+    }
 }
 

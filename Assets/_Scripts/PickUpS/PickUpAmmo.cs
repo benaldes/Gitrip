@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickUpAmmo : MonoBehaviour
 {
+    [SerializeField] int _ammo = 50;
     public AudioSource ammoPickUpSound;
     [SerializeField] private PlayerScript _playerScript;
 
@@ -24,6 +25,6 @@ public class PickUpAmmo : MonoBehaviour
     public void PickUp()
     {
         ammoPickUpSound.Play();
-        _playerScript.AmmoCount += 5;
+        _playerScript.AmmoCount += _ammo;
     }
 }

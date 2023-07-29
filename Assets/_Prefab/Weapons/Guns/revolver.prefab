@@ -254,12 +254,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d593b869d816d0d49b5b94bf6fa9c83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dmg: 10
+  _dmg: 15
   _fireRate: 0.3
   _bulletSpeed: 10
+  _ammoCostForShot: 1
+  _bulletSpread: 0
+  _numberOfBullets: 1
+  _isWeapon: 1
   _bullet: {fileID: 1860706049015914, guid: 72ac23f939804d84eb9ad2bc3b2a7fae, type: 3}
   _gunShotPoint: {fileID: 2879837142388219879}
-  _gun: {fileID: 4131008868949983973}
-  _player: {fileID: 1355646798857723919, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
-  _camera: {fileID: 0}
   _gunShotSound: {fileID: 8300000, guid: 0add8c6037704464fa071332ad4ecd17, type: 3}
+  _gunRenderer: {fileID: 3698770872547271145}

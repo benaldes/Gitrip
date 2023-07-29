@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HPPickUp : MonoBehaviour
 {
-    [SerializeField] private PlayerScript _playerScript;
-    [SerializeField] private AudioSource _hpPickUpSound;
+    private PlayerScript _playerScript;
+    private AudioSource _hpPickUpSound;
 
     private void Awake()
     {

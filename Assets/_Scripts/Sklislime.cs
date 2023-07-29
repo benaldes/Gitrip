@@ -51,7 +51,7 @@ public class Sklislime : MonoBehaviour
     {
         if (!_isDead) DamageNumbers(dmg);
         HP -= dmg;
-        if (HP <= 0)
+        if (HP <= 0 && !_isDead)
         {
             _isDead = true;
             StartCoroutine(Death());

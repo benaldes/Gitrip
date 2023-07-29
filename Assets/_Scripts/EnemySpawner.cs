@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
 
         Timer = 0f;
-        WaveCount = WaveNumber * 10;
+        WaveCount = 10 + WaveNumber * 2;
         WaveNumber++;
         StartCoroutine(EnemySpawnInterval());
     }

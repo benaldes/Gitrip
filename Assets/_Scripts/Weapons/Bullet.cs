@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int Dmg = 10;
     [SerializeField] private PlayerScript _playerScript;
     private float timer = 0;
 
@@ -17,19 +18,19 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<Enemy>().takeDamage(_playerScript.PlayerDamage);
+            collision.GetComponent<Enemy>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "FatMen")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<FatMen>().takeDamage(_playerScript.PlayerDamage);
+            collision.GetComponent<FatMen>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Sklislime")
         {
             //collision.GetComponent<AudioSource>().Play();
-            collision.GetComponent<Sklislime>().takeDamage(_playerScript.PlayerDamage);
+            collision.GetComponent<Sklislime>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
 
