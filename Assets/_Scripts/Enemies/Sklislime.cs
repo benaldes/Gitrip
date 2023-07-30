@@ -23,11 +23,11 @@ public class Sklislime : MonoBehaviour
     [SerializeField] private AudioClip _sklislimeSplitSound;
     [SerializeField] private AudioSource _sklislimeAudioSource;
 
-
-    private void Start()
+    private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
+
     void Update()
     {
         Timer += Time.deltaTime;

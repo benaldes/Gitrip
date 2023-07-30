@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,24 +10,26 @@ public class Enemy : MonoBehaviour
     public int EnemeyDamage = 10;
     public int HP = 10;
     public float DamageTimer = 1f;
-    public float Timer = 0f;
     public int ExpGain = 1;
+    private float Timer = 0f;
 
-    public PlayerScript player;
-    public Rigidbody2D thisEnemy;
-    public GameObject DamageNambersText;
-    public Animator DeathAnimator;
-    public Collider2D collider2D;
-    public SpriteRenderer Sprite;
-
+    [SerializeField] private GameObject _DamageNambersText;
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Animator _deathAnimator;
+    private Collider2D _collider2D;
+    private PlayerScript _player;
+    private Rigidbody2D _thisEnemy;
     private Vector3 _currentPoint;
     private bool _isDead = false;
 
-
+    private void Awake()
+    {
+        _collider2D = GetComponent<Collider2D>();
+        _thisEnemy = gameObject.GetComponent<Rigidbody2D>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+    }
     void Start()
     {
-        thisEnemy = gameObject.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         _currentPoint = transform.position;
     }
     private void Update()
@@ -38,11 +41,11 @@ public class Enemy : MonoBehaviour
     {
         if (transform.position.x > _currentPoint.x)
         {
-            Sprite.flipX = true;
+            _sprite.flipX = true;
         }
         else if (transform.position.x < _currentPoint.x)
         {
-            Sprite.flipX = false;
+            _sprite.flipX = false;
         }
         _currentPoint.x = transform.position.x;
     }
@@ -51,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && DamageTimer < Timer)
         {
-            player.PlayerTakeDamage(EnemeyDamage);
+            _player.PlayerTakeDamage(EnemeyDamage);
             Timer = 0f;
         }
     }
@@ -70,19 +73,19 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Death()
     {
-        DeathAnimator.SetBool("Dead", _isDead);
-        Destroy(collider2D);
-        player.Experience += ExpGain;
+        _deathAnimator.SetBool("Dead", _isDead);
+        Destroy(_collider2D);
+        _player.Experience += ExpGain;
         yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
     }
     public void Knockback(Vector2 direction , float Knockbackforce)
     {
-        thisEnemy.AddForce(direction * Knockbackforce, ForceMode2D.Force);
+        _thisEnemy.AddForce(direction * Knockbackforce, ForceMode2D.Force);
     }
     public void DamageNumbers(int dmg)
     {
-        var dmgNum = Instantiate(DamageNambersText,transform.position,Quaternion.identity,transform);
+        var dmgNum = Instantiate(_DamageNambersText, transform.position,Quaternion.identity,transform);
         dmgNum.GetComponent<TextMeshPro>().text = dmg.ToString();
     }
 

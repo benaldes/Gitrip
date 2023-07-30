@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 40
   Damage: 20
-  ExpGain: 5
+  ExpGain: 1
   DamageTimer: 1
   Timer: 0
   DeathSplitTimer: 1

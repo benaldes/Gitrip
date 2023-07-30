@@ -197,6 +197,7 @@ MonoBehaviour:
   _ammoCostForShot: 0
   _bulletSpread: 10
   _numberOfBullets: 60
+  _bulletRange: 2.5
   _isWeapon: 0
   _bullet: {fileID: 1860706049015914, guid: 72ac23f939804d84eb9ad2bc3b2a7fae, type: 3}
   _gunShotPoint: {fileID: 8522387856161801483}

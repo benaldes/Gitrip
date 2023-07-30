@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private int _ammoCostForShot;
     [SerializeField] private int _bulletSpread;
     [SerializeField] private int _numberOfBullets;
+    [SerializeField] private float _bulletRange = 3;
     [SerializeField] private bool _isWeapon = true;
     #endregion
     #region refrence
@@ -109,6 +110,7 @@ public class Gun : MonoBehaviour
             Bullet bullet = shot.GetComponent<Bullet>();
             shotrigidbody2D.AddForce(_gunShotPoint.transform.right * _bulletSpeed, ForceMode2D.Impulse);
             bullet.Dmg = _dmg;
+            bullet.BulletRange = _bulletRange;
             
         }
 

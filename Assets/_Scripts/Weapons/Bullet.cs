@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int Dmg = 10;
+    public float BulletRange;
     [SerializeField] private PlayerScript _playerScript;
     private float timer = 0;
 
@@ -42,7 +43,7 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        if(timer > 3) 
+        if(timer > BulletRange) 
         {
             Destroy(gameObject);
         }

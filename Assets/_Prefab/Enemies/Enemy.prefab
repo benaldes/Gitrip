@@ -144,7 +144,7 @@ Transform:
   m_Children:
   - {fileID: 387231368846475287}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &260555368723516993
 MonoBehaviour:
@@ -161,13 +161,12 @@ MonoBehaviour:
   EnemeyDamage: 10
   HP: 30
   DamageTimer: 1
-  Timer: 0
-  player: {fileID: 0}
-  thisEnemy: {fileID: 0}
-  DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
-  DeathAnimator: {fileID: 2929209454527798161}
-  collider2D: {fileID: 8752496878584001287}
-  Sprite: {fileID: 7801750800104903370}
+  ExpGain: 1
+  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  _collider2D: {fileID: 8752496878584001287}
+  _sprite: {fileID: 7801750800104903370}
+  _deathAnimator: {fileID: 2929209454527798161}
+  _thisEnemy: {fileID: 3794904876847359510}
 --- !u!114 &4515543791277334234
 MonoBehaviour:
   m_ObjectHideFlags: 0

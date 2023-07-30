@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -28,7 +27,10 @@ public class GameManager : MonoBehaviour
         else 
             Destroy(gameObject);
     }
-
+    private void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
     void Update()
     {
         SetHPBar();
@@ -59,7 +61,9 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
     public void ExitGame()
     {

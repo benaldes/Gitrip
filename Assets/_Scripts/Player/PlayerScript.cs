@@ -42,9 +42,12 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI StatsText;
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject DeathPanel;
+    [SerializeField] private TextMeshProUGUI _deathScore;
+    private TextMeshProUGUI _scoreUIText;
 
     private void Awake()
     {
+        _scoreUIText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();    
         _PlayerAudio = GetComponent<AudioSource>();
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
@@ -52,6 +55,7 @@ public class PlayerScript : MonoBehaviour
         _playerCombat = GetComponent<PlayerCombat>();
         
     }
+    
     void Update()
     {
         if (HP > 0)
@@ -72,6 +76,7 @@ public class PlayerScript : MonoBehaviour
         _playerAnimator.SetTrigger("Death");
         yield return new WaitForSeconds(0.40f);
         DeathPanel.SetActive(true);
+        _deathScore.text = "Score: " + Experience;
     }
     private void UpdateStats()
     {
@@ -82,6 +87,7 @@ public class PlayerScript : MonoBehaviour
         "\nSpeed: " + WalkSpeed.ToString() +
         "\nAttack Speed: " + AttackSpeed.ToString() +
         "\nDodge Chance: " + DodgeChance.ToString();
+        _scoreUIText.text = Experience.ToString();
     }
     public Vector3 GetDiraction()
     {
