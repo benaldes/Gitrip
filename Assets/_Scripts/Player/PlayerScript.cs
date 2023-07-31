@@ -24,7 +24,6 @@ public class PlayerScript : MonoBehaviour
     #endregion
     #region Player Scrip
     private PlayerInput _playerInput;
-    private PlayerCombat _playerCombat;
     private PlayerMovement _playerMovement;
     private Rigidbody2D _playerRigidbody2D;
     private AudioSource _PlayerAudio;
@@ -52,7 +51,6 @@ public class PlayerScript : MonoBehaviour
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _playerMovement = GetComponent<PlayerMovement>();
-        _playerCombat = GetComponent<PlayerCombat>();
         
     }
     
@@ -62,7 +60,6 @@ public class PlayerScript : MonoBehaviour
         {
             UpdateStats();
             _playerInput.PlayerInputFunc();
-            _playerCombat.CombatUpdate();
         }
         else if(!_playerIsDead) StartCoroutine(Death());
   
@@ -93,10 +90,6 @@ public class PlayerScript : MonoBehaviour
     {
         return _playerInput.Diraction;
     }
-    public void MeleeAttack()
-    {
-        _playerCombat.MeleeAttack();
-    }
     public void PauseMenu()
     {
         pauseMenu.SetPauseMenu();
@@ -119,7 +112,7 @@ public class PlayerScript : MonoBehaviour
         float index = Random.Range(0, 101);
         if (index < DodgeChance)
         {
-            //DodgeShowText();
+            DodgeShowText();
             _PlayerAudio.clip = _playerDodgeSound;
             _PlayerAudio.Play();
             return true;
@@ -133,7 +126,6 @@ public class PlayerScript : MonoBehaviour
         var dodgeText = Instantiate(AboveHeadDamageText, transform.position, Quaternion.identity, transform);
         dodgeText.GetComponent<TextMeshPro>().text = "Dodge";
     }
-
     public IEnumerator Invulnerability()
     {
         Physics2D.IgnoreLayerCollision(3, 9, true);

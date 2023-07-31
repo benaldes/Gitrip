@@ -18,7 +18,6 @@ public class PlayerInput : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Diraction = new Vector3 (horizontal, vertical);
 
-        if(Input.GetKeyDown(KeyCode.Space)) _playerScript.MeleeAttack();
         if(Input.GetKeyDown(KeyCode.Escape)) _playerScript.PauseMenu();       
         
     }

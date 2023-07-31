@@ -260,7 +260,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5428080375216977178}
   - component: {fileID: 4443837800414157927}
-  - component: {fileID: 4178015284644498422}
   - component: {fileID: 855504312768276763}
   - component: {fileID: 2959093386656419310}
   - component: {fileID: 2117478404981530393}
@@ -310,7 +309,7 @@ MonoBehaviour:
   AttackSpeed: 10
   ActualAttackSpeed: 0
   DodgeChance: 10
-  AmmoCount: 10
+  AmmoCount: 100
   Level: 1
   Experience: 0
   ExperienceToLevelUp: 10000
@@ -327,32 +326,7 @@ MonoBehaviour:
   StatsText: {fileID: 0}
   pauseMenu: {fileID: 0}
   DeathPanel: {fileID: 0}
---- !u!114 &4178015284644498422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355646798857723919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08bdd230b53e42140b4e9a525b5c7028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackRange: 0.5
-  KnockbackForce: 5
-  meleeAttackSpeed: 0.2
-  meleeAttackTimer: 0
-  WalkSoundintrvel: 2
-  _player: {fileID: 1355646798857723919}
-  _playerScript: {fileID: 4443837800414157927}
-  _meleeAttackSound: {fileID: 8300000, guid: 1af533a2494ebca48af3a1537fcca2c6, type: 3}
-  MeleeAttackSprite: {fileID: 1775120293697464509, guid: 51141aadd8d96524d917d0fa1b63eb77, type: 3}
-  _audioSource: {fileID: 3530403991637985341}
-  EnemeyLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  _Camera: {fileID: 0}
+  _deathScore: {fileID: 0}
 --- !u!114 &855504312768276763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +620,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+      propertyPath: _dmg
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+      propertyPath: _bulletRange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5200202802507238220, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -842,9 +824,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
+      propertyPath: _dmg
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1355646798857723919}
+    - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
+      propertyPath: _fireRate
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3270959757626673419, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
     m_RemovedGameObjects: []

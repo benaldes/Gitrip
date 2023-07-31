@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
     private List<int> angleList = new List<int>();
     #endregion
 
-    private float _gunShotTimer;
+    private float _gunShotTimer = 10;
     
 
     private void Awake()
