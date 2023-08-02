@@ -18,20 +18,22 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            //collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<Enemy>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "FatMen")
         {
-            //collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<FatMen>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Sklislime")
         {
-            //collision.GetComponent<AudioSource>().Play();
             collision.GetComponent<Sklislime>().takeDamage(_playerScript.PlayerDamage + Dmg);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "LordOfTheflies")
+        {
+            collision.GetComponent<LordOfTheflies>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
 

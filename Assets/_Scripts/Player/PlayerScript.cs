@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     public float ExperienceToLevelUp = 10;
 
     public bool _playerIsDead = false;
+    public bool _invincible = false;
     #endregion
     #region Player Scrip
     private PlayerInput _playerInput;
@@ -96,6 +97,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void PlayerTakeDamage(int Damage)
     {
+        if (_invincible) { return; }
         if (DodgeCheck())
         {
             return;
