@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafa0505fae5ad0448c7161080b11edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _phase: -1
   _dmg: 10
   _fireRate: 0.5
   _bulletSpeedMin: 6
@@ -85,7 +86,7 @@ MonoBehaviour:
   _ammoCostForShot: 0
   _bulletSpread: 25
   _numberOfBullets: 1
-  _bulletRange: 3
+  _bulletRange: 5
   _isWeapon: 1
   _enemy: {fileID: 3341021577044164979}
   _bullet: {fileID: 5210559017776958974, guid: 0124f03eebbc71149ba8fa9581eccf7f, type: 3}
@@ -227,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5706247894615262662}
   - component: {fileID: 921018683503396552}
+  - component: {fileID: 6407445984587371983}
   m_Layer: 3
   m_Name: RedFlysprite
   m_TagString: Untagged
@@ -301,6 +303,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6407445984587371983
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708429698817185579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d6b26d59e0e82d4bac3bac29b22ea01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3341021577044164979
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +339,7 @@ GameObject:
   - component: {fileID: 12939009557745322}
   - component: {fileID: 887880451552850108}
   - component: {fileID: 5783137977766514260}
+  - component: {fileID: 615629757907104223}
   m_Layer: 3
   m_Name: Lord of the Flies
   m_TagString: LordOfTheflies
@@ -352,11 +376,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f35b63aab974944d9f674980c21f87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 2000
-  HP: 2000
+  MaxHP: 500
+  HP: 500
   _isDead: 0
+  Invincible: 0
   _sprite: {fileID: 921018683503396552}
   _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  _Gun: {fileID: 5269436654127202599}
+  _animator: {fileID: 6407445984587371983}
+  _cam: {fileID: 0}
+  _phaseTwoTrans: {fileID: 8300000, guid: 505997bfc4c9c9b4a86d83e51d30bf42, type: 3}
 --- !u!114 &6210352833651769735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,3 +532,99 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 3.98, y: 2.74}
   m_Direction: 1
+--- !u!82 &615629757907104223
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3341021577044164979}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

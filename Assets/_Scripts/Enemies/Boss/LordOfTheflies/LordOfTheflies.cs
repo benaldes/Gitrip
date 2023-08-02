@@ -2,8 +2,10 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class LordOfTheflies : MonoBehaviour
 {
@@ -20,10 +22,15 @@ public class LordOfTheflies : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _cam;
     [SerializeField] private AudioClip _phaseTwoTrans;
 
+    private BossHPBar _bossHPBar;
     private GameObject _player;
     private Vector3 _currentPoint;
     void Start()
     {
+        _bossHPBar = GameObject.Find("BossHpBar").GetComponent<BossHPBar>();
+        _bossHPBar.Show = true;
+        _bossHPBar.BossIsBurn(HP);
+        _cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         _player = GameObject.FindGameObjectWithTag("Player");
         _currentPoint = transform.position;
     }
@@ -53,6 +60,7 @@ public class LordOfTheflies : MonoBehaviour
         if(Invincible) { return; }
         if (!_isDead) DamageNumbers(dmg);
         HP -= dmg;
+        _bossHPBar.UpdateHP(HP);
         if (HP <= 0)
         {
             _isDead = true;
@@ -66,6 +74,8 @@ public class LordOfTheflies : MonoBehaviour
     }
     private void Death()
     {
+        _bossHPBar.Show = false;
+        GameObject.Find("Clock").GetComponent<Clock>()._bossFight = false;
         Destroy(gameObject);
     }
     public  void IntroEnter()

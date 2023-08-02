@@ -10,7 +10,7 @@ public class LordOfTheFliesPhase2Trans : StateMachineBehaviour
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-        _lordOfThefliesScript = GameObject.Find("Lord of the Flies").GetComponent<LordOfTheflies>();
+        _lordOfThefliesScript = GameObject.FindGameObjectWithTag("LordOfTheflies").GetComponent<LordOfTheflies>();
 
         }
 

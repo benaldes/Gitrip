@@ -14,8 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelUpPanal _levelUpScript;
     [SerializeField] private Slider _HPBar;
     [SerializeField] private Slider _ExpBar;
+    [SerializeField] private GameObject _clock;
+    
 
+    
     private PlayerScript _playerScript;
+
 
     private void Awake()
     {
@@ -35,7 +39,9 @@ public class GameManager : MonoBehaviour
     {
         SetHPBar();
         SetExpSlider();
+        
     }
+    
     private void SetHPBar()
     {
         _HPBar.value = _playerScript.HP;

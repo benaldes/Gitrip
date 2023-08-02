@@ -13,31 +13,13 @@ public class EnemySpawner : MonoBehaviour
     public int WaveCount;
     public float Timer = 0f;
     public float WaveInterval = 10f;
-    public Transform ClockHandMin;
+    public int BossWaveInterval = 2;
+
     public AudioSource Clocksound;
     
-    void Start()
-    {
-        //StartCoroutine(EnemySpawn());
-    }
-    private void Update()
-    {
-        Timer += Time.deltaTime;
-        MoveClock();
-        if (Timer > WaveInterval) WaveStart();
-        bool play = false;
-        if((WaveInterval - Timer) <= 2)
-        {
-            if(!Clocksound.isPlaying)
-            {
-                Clocksound.time = 0.6f;
-                Clocksound.Play();
-            }
-            
-        }
-            
-    }
-    private void WaveStart() 
+
+    
+    public void WaveStart() 
     {
 
         Timer = 0f;
@@ -144,13 +126,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Clocksound.Play();
     }
-    private void MoveClock()
-    {
-        float angle = 360 / WaveInterval;
-        float clockAngle = Timer * angle;
-        ClockHandMin.eulerAngles = new Vector3(0,0,-clockAngle);
-        
-    }
+    
 }
 
 [System.Serializable]
