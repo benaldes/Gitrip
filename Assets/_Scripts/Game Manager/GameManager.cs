@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public void Levelup()
     {
         _playerScript.Level++;
-        _playerScript.ExperienceToLevelUp *= 2f;        
+        _playerScript.ExperienceToLevelUp *= 2;        
 
         LevelUpPanal.SetActive(true);
         _levelUpScript.LevelUp();

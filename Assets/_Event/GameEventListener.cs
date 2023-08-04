@@ -4,17 +4,23 @@ using UnityEditor.Compilation;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 [System.Serializable]
-public class CustomGameEvent : UnityEvent<Component, float> { }
+public class DataUnityEvent : UnityEvent<Component,object> { }
 public class GameEventListener : MonoBehaviour
 {
     public GameEvent Event;
-    public CustomGameEvent Response;
+    public UnityEvent Response;
+    public DataUnityEvent ResponseData;
+
     private void OnEnable()
     { Event.RegisterListener(this); }
     private void OnDisable()
     { Event.UnregisterListener(this); }
-    public void OnEventRaised(Component sender, float data)
-    { Response.Invoke(sender,data); }
+    public void OnEventRaised()
+    { Response.Invoke(); }
+    public void OnEventRaised(Component component, object data)
+    { ResponseData.Invoke(component, data); }
+
 
 }

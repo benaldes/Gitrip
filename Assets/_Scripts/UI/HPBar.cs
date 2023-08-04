@@ -6,18 +6,17 @@ using UnityEngine.UI;
 public class HPBar : MonoBehaviour
 {
     private Slider _slider;
-    private PlayerScript _playerScript;
-
     private void Start()
+    { _slider = GetComponent<Slider>(); }
+    public void SetPlayerHP(Component component, object data)
     {
-        _slider = GetComponent<Slider>();
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-        _slider.value = _playerScript.HP;
-        _slider.maxValue = _playerScript.MaxHP;
+        if (data is int)
+        {
+            _slider.value = (int) data;
+            _slider.maxValue = (int)data;
+        }
     }
-    public void SetHPBar(Component component, float HP)
-    {
-        _slider.value = HP;
-        _slider.maxValue = HP;
-    }
+    public void UpdateHPBar(Component component, object data)
+    { if (data is int) { _slider.value = (int)data; } }
+        
 }

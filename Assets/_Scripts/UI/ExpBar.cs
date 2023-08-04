@@ -6,19 +6,16 @@ using UnityEngine.UI;
 public class ExpBar : MonoBehaviour
 {
     private Slider _slider;
-    private PlayerScript _playerScript;
-
     private void Start()
+    { _slider = GetComponent<Slider>(); }
+    public void SetExpSlider(Component component, object data)
     {
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-        _slider = GetComponent<Slider>();
-        SetExpSlider();
-
+        if(data is int )
+        {
+            _slider.maxValue = (int) data;
+        }
     }
-    public void SetExpSlider()
-    {
-        _slider.maxValue = _playerScript.ExperienceToLevelUp;
-        _slider.value = _playerScript.Experience;
+    public void UpdateExpSlider(Component component, object data)
+    { if (data is int) { _slider.value = (int)data; } }
 
-    }
 }

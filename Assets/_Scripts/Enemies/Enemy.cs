@@ -4,6 +4,7 @@ using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour
         _player.Experience += ExpGain;
         yield return new WaitForSeconds(0.19f);
         Destroy(gameObject);
+        
     }
     public void Knockback(Vector2 direction , float Knockbackforce)
     {

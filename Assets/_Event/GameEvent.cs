@@ -9,11 +9,18 @@ public class GameEvent : ScriptableObject
 {
     private List<GameEventListener> Listeners = new List<GameEventListener>();
 
-    public void Raise(Component sender, float data)
+    public void Raise()
     {
         for (int i = Listeners.Count - 1; i >= 0; i--)
         {
-            Listeners[i].OnEventRaised(sender,data);
+            Listeners[i].OnEventRaised();
+        }
+    }
+    public void Raise(Component component, object data)
+    {
+        for (int i = Listeners.Count - 1; i >= 0; i--)
+        {
+            Listeners[i].OnEventRaised(component, data);
         }
     }
     public void RegisterListener(GameEventListener listener)

@@ -19,14 +19,13 @@ public class PlayerScript : MonoBehaviour
 
     public int Level = 1;
     public int Experience = 0;
-    public float ExperienceToLevelUp = 10;
+    public int ExperienceToLevelUp = 10;
 
     public bool _playerIsDead = false;
     public bool _invincible = false;
     #endregion
     #region Player Scrip
     private PlayerInput _playerInput;
-    private PlayerMovement _playerMovement;
     private Rigidbody2D _playerRigidbody2D;
     private AudioSource _PlayerAudio;
     [SerializeField] private SpriteRenderer _PlayerSpriteRenderer;
@@ -45,16 +44,15 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject DeathPanel;
     [SerializeField] private TextMeshProUGUI _deathScore;
     private TextMeshProUGUI _scoreUIText;
-    public CustomGameEvent PlayerTakeDmgEvent;
+    public DataUnityEvent PlayerTakeDmgEvent;
+    public DataUnityEvent PlayerGetExp;
 
     private void Awake()
     {
         _scoreUIText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();    
         _PlayerAudio = GetComponent<AudioSource>();
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
-        _playerInput = GetComponent<PlayerInput>();
-        _playerMovement = GetComponent<PlayerMovement>();
-        
+        _playerInput = GetComponent<PlayerInput>();     
     }
     
     void Update()
@@ -65,6 +63,8 @@ public class PlayerScript : MonoBehaviour
             _playerInput.PlayerInputFunc();
         }
         else if(!_playerIsDead) StartCoroutine(Death());
+        if (Experience.ToString() != _scoreUIText.text)
+        { PlayerGetExp.Invoke(this, ExperienceToLevelUp); }
   
     }
     private IEnumerator Death()
@@ -80,6 +80,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void UpdateStats()
     {
+        
         if (HP > MaxHP) { HP = MaxHP; }
         ActualAttackSpeed = 5f / AttackSpeed;
         _AmmoText.text = "Ammo: " + AmmoCount.ToString();

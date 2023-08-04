@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Events;
 using static Unity.Collections.AllocatorManager;
 
 public class LordOfTheflies : MonoBehaviour
@@ -14,25 +15,24 @@ public class LordOfTheflies : MonoBehaviour
     public bool _isDead = false;
     public bool Invincible = false;
 
-
+     
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private EnemyGun _Gun;
     [SerializeField] private Animator _animator;
     [SerializeField] private CinemachineVirtualCamera _cam;
     [SerializeField] private AudioClip _phaseTwoTrans;
+    public DataUnityEvent StartBossFight;
+    public DataUnityEvent FightIsHit;
 
-    private BossHPBar _bossHPBar;
     private GameObject _player;
     private Vector3 _currentPoint;
     void Start()
     {
-        _bossHPBar = GameObject.Find("BossHpBar").GetComponent<BossHPBar>();
-        _bossHPBar.Show = true;
-        _bossHPBar.BossIsBurn(HP);
         _cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         _player = GameObject.FindGameObjectWithTag("Player");
         _currentPoint = transform.position;
+        StartBossFight.Invoke(this, HP);
     }
 
 
@@ -60,7 +60,7 @@ public class LordOfTheflies : MonoBehaviour
         if(Invincible) { return; }
         if (!_isDead) DamageNumbers(dmg);
         HP -= dmg;
-        _bossHPBar.UpdateHP(HP);
+        FightIsHit.Invoke(this,HP);
         if (HP <= 0)
         {
             _isDead = true;
@@ -74,7 +74,6 @@ public class LordOfTheflies : MonoBehaviour
     }
     private void Death()
     {
-        _bossHPBar.Show = false;
         GameObject.Find("Clock").GetComponent<Clock>()._bossFight = false;
         Destroy(gameObject);
     }

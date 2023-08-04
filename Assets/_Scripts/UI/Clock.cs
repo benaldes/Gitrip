@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Clock : MonoBehaviour
 {
@@ -10,13 +11,12 @@ public class Clock : MonoBehaviour
     [SerializeField] private Transform _clockHandMin;
     [SerializeField] private Transform _clockHandHour;
     [SerializeField] private BossSpawner _bossSpawner;
-    private float Timer = 0;
     [SerializeField] private int _bossWaveCount = 0;
-    
+    private float Timer = 0;
+
+
     private void Update()
-    {
-        ClockTime();
-    }
+    { ClockTime(); }
     private void ClockTime()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
