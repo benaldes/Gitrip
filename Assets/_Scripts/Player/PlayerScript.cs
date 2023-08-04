@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject DeathPanel;
     [SerializeField] private TextMeshProUGUI _deathScore;
     private TextMeshProUGUI _scoreUIText;
+    public CustomGameEvent PlayerTakeDmgEvent;
 
     private void Awake()
     {
@@ -102,11 +104,13 @@ public class PlayerScript : MonoBehaviour
         {
             return;
         }
+        
         if (HP > 0)
         {
             _PlayerAudio.clip = _PlayerGetHitSound;
             _PlayerAudio.Play();
             HP -= Damage;
+            PlayerTakeDmgEvent.Invoke(this,HP);
         }
     }
     private bool DodgeCheck()

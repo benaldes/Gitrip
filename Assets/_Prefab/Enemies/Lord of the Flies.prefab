@@ -376,8 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f35b63aab974944d9f674980c21f87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 500
-  HP: 500
+  MaxHP: 2000
+  HP: 2000
   _isDead: 0
   Invincible: 0
   _sprite: {fileID: 921018683503396552}

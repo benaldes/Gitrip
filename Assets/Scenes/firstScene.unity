@@ -1400,6 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598652507}
   - component: {fileID: 598652508}
+  - component: {fileID: 598652510}
   - component: {fileID: 598652509}
   m_Layer: 5
   m_Name: LevelBar
@@ -1491,7 +1492,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 598652506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f674b97d505e74438256ab84e419c24, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e7aea6e62c3d3b458fb205a87c70268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1da01630ecbfd2c4fab2930ca7bcd098, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 598652510}
+        m_TargetAssemblyTypeName: ExpBar, Assembly-CSharp
+        m_MethodName: SetExpSlider
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &598652510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598652506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5aa2a73f6937348a7f8182caee60f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &630752603
@@ -1751,6 +1780,38 @@ PrefabInstance:
       propertyPath: _deathScore
       value: 
       objectReference: {fileID: 90999227}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: ExperienceToLevelUp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ca7745e0e0554b47b4915af3975fd6c, type: 2}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+      propertyPath: PlayerTakeDmgEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5325545942858841012, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
       propertyPath: _bulletRange
       value: 0.4
@@ -3799,6 +3860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 920030388}
   - component: {fileID: 920030390}
+  - component: {fileID: 920030391}
   - component: {fileID: 920030389}
   m_Layer: 5
   m_Name: Clock
@@ -3946,6 +4008,34 @@ MonoBehaviour:
   _clockHandHour: {fileID: 1080548959}
   _bossSpawner: {fileID: 807185130}
   _bossWaveCount: 0
+--- !u!114 &920030391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920030387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7aea6e62c3d3b458fb205a87c70268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 6bd828aec6493b94aabe2704639e2cb5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &960730245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5628,7 +5718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelUpPanal: {fileID: 1332473454}
   _levelUpScript: {fileID: 1332473460}
-  _HPBar: {fileID: 2032345127}
   _ExpBar: {fileID: 598652508}
   _clock: {fileID: 0}
 --- !u!4 &1742745280
@@ -6591,8 +6680,8 @@ GameObject:
   - component: {fileID: 1992310706}
   - component: {fileID: 1992310705}
   - component: {fileID: 1992310704}
-  - component: {fileID: 1992310703}
   - component: {fileID: 1992310707}
+  - component: {fileID: 1992310708}
   m_Layer: 5
   m_Name: AmmoCount
   m_TagString: AmmoCount
@@ -6600,18 +6689,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1992310703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992310702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195ba577abed613409617a51fad1fcbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1992310704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6825,6 +6902,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1992310708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992310702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e83a80c0625ac448e67b677899f6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000427178
 GameObject:
   m_ObjectHideFlags: 0
@@ -30902,6 +30991,8 @@ GameObject:
   - component: {fileID: 2032345126}
   - component: {fileID: 2032345127}
   - component: {fileID: 2032345129}
+  - component: {fileID: 2032345130}
+  - component: {fileID: 2032345131}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -31079,6 +31170,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2032345130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032345125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e83a80c0625ac448e67b677899f6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2032345131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032345125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7aea6e62c3d3b458fb205a87c70268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 8ca7745e0e0554b47b4915af3975fd6c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2032345130}
+        m_TargetAssemblyTypeName: HPBar, Assembly-CSharp
+        m_MethodName: SetHPBar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2041343854
 GameObject:
   m_ObjectHideFlags: 0
