@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PickUpAmmo : MonoBehaviour
 {
-    [SerializeField] int _ammo = 50;
     public AudioSource ammoPickUpSound;
-    [SerializeField] private PlayerScript _playerScript;
+    [SerializeField] private int _ammo = 50;
+    [SerializeField] private int _ammoType = 1;
+    public DataUnityEvent AmmoPickUp;
 
     private void Start()
     {
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
         ammoPickUpSound = GameObject.Find("AmmoCount").GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +24,8 @@ public class PickUpAmmo : MonoBehaviour
     }
     public void PickUp()
     {
+        int[] ammo = {_ammoType, _ammo}; 
         ammoPickUpSound.Play();
-        _playerScript.AmmoCount += _ammo;
+        AmmoPickUp.Invoke(this, ammo);
     }
 }

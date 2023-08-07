@@ -14,14 +14,9 @@ public class EnemySpawner : MonoBehaviour
     public float Timer = 0f;
     public float WaveInterval = 10f;
     public int BossWaveInterval = 2;
-
     public AudioSource Clocksound;
-    
-
-    
     public void WaveStart() 
     {
-
         Timer = 0f;
         WaveCount = 10 + WaveNumber * 2;
         WaveNumber++;

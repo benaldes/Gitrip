@@ -1,14 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Gun : MonoBehaviour
 {
     #region  Gun Stats
+    [SerializeField] private int _ammoType;
     [SerializeField] private int _dmg;
     [SerializeField] private float _fireRate;
     [SerializeField] private int _bulletSpeed;
@@ -23,6 +19,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _gunShotPoint;
     [SerializeField] private AudioClip _gunShotSound;
     [SerializeField] private SpriteRenderer _gunRenderer;
+    [SerializeField] private WeaponHolder _weaponHolder;
+
 
     private GameObject _player;
     private Camera _camera;
@@ -33,7 +31,9 @@ public class Gun : MonoBehaviour
     #endregion
 
     private float _gunShotTimer = 10;
-    
+
+
+
 
     private void Awake()
     {
@@ -43,9 +43,10 @@ public class Gun : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _camera = Camera.FindAnyObjectByType<Camera>();
     }
+    
     void Update()
     {
-        if(_isWeapon)
+        if (_isWeapon)
         {
             GunRotation();
             if (Input.GetButton("Fire1")) GunShot();
@@ -70,17 +71,14 @@ public class Gun : MonoBehaviour
     }
     public void GunShot()
     {
-        if (_gunShotTimer > _fireRate && _playerScript.AmmoCount >= _ammoCostForShot) { }
-        else return;
+        if (_gunShotTimer > _fireRate) { } else return;
+        if (ReduceAmmo()) { } else return;
+        _weaponHolder.GunFired();
         _gunShotTimer = 0;
         _audioSource.clip = _gunShotSound;
         _audioSource.Play();
-        _playerScript.AmmoCount -= _ammoCostForShot;
         angleList.Clear();
-        if (_numberOfBullets == 1)
-        {
-            angleList.Add(0);
-        }
+        if (_numberOfBullets == 1) angleList.Add(0);
         else if (_numberOfBullets % 2 == 0)
         {
             int spreadStart = _bulletSpread / 2;
@@ -101,7 +99,6 @@ public class Gun : MonoBehaviour
                 angleList.Add(-_bulletSpread * i);
             }
         }
-
         foreach (int angle in angleList)
         {
             _gunShotPoint.transform.localRotation = Quaternion.Euler(0, 0, angle);
@@ -111,8 +108,27 @@ public class Gun : MonoBehaviour
             shotrigidbody2D.AddForce(_gunShotPoint.transform.right * _bulletSpeed, ForceMode2D.Impulse);
             bullet.Dmg = _dmg;
             bullet.BulletRange = _bulletRange;
-            
         }
-
+    }
+    private bool ReduceAmmo()
+    {
+        if (_ammoType == 0) return true;
+        else if (_ammoType == 1)
+        {
+            if (_weaponHolder.M_Ammo >= _ammoCostForShot)
+            {
+                _weaponHolder.M_Ammo -= _ammoCostForShot;
+                return true;
+            }
+        }
+        else if (_ammoType == 2)
+        {
+            if (_weaponHolder.L_Ammo >= _ammoCostForShot)
+            {
+                _weaponHolder.L_Ammo -= _ammoCostForShot;
+                return true;
+            }
+        }
+        return false;
     }
 }

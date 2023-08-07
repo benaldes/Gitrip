@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -46,15 +43,19 @@ public class PlayerScript : MonoBehaviour
     private TextMeshProUGUI _scoreUIText;
     public DataUnityEvent PlayerTakeDmgEvent;
     public DataUnityEvent PlayerGetExp;
+    public DataUnityEvent PlayerIsBorn;
 
     private void Awake()
     {
-        _scoreUIText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();    
+        _scoreUIText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         _PlayerAudio = GetComponent<AudioSource>();
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
-        _playerInput = GetComponent<PlayerInput>();     
+        _playerInput = GetComponent<PlayerInput>();
     }
-    
+    private void Start()
+    {
+        PlayerIsBorn.Invoke(this, this);
+    }
     void Update()
     {
         if (HP > 0)
@@ -62,10 +63,10 @@ public class PlayerScript : MonoBehaviour
             UpdateStats();
             _playerInput.PlayerInputFunc();
         }
-        else if(!_playerIsDead) StartCoroutine(Death());
+        else if (!_playerIsDead) StartCoroutine(Death());
         if (Experience.ToString() != _scoreUIText.text)
         { PlayerGetExp.Invoke(this, ExperienceToLevelUp); }
-  
+
     }
     private IEnumerator Death()
     {
@@ -80,10 +81,9 @@ public class PlayerScript : MonoBehaviour
     }
     private void UpdateStats()
     {
-        
+
         if (HP > MaxHP) { HP = MaxHP; }
         ActualAttackSpeed = 5f / AttackSpeed;
-        _AmmoText.text = "Ammo: " + AmmoCount.ToString();
         StatsText.text = "Damage: " + PlayerDamage.ToString() +
         "\nSpeed: " + WalkSpeed.ToString() +
         "\nAttack Speed: " + AttackSpeed.ToString() +
@@ -105,13 +105,13 @@ public class PlayerScript : MonoBehaviour
         {
             return;
         }
-        
+
         if (HP > 0)
         {
             _PlayerAudio.clip = _PlayerGetHitSound;
             _PlayerAudio.Play();
             HP -= Damage;
-            PlayerTakeDmgEvent.Invoke(this,HP);
+            PlayerTakeDmgEvent.Invoke(this, HP);
         }
     }
     private bool DodgeCheck()
@@ -139,7 +139,7 @@ public class PlayerScript : MonoBehaviour
         _PlayerSpriteRenderer.color = Color.blue;
         yield return new WaitForSeconds(5);
         _PlayerSpriteRenderer.color = Color.white;
-        Physics2D.IgnoreLayerCollision(3,9,false);
+        Physics2D.IgnoreLayerCollision(3, 9, false);
     }
 }
 
