@@ -5,20 +5,16 @@ public class WeaponHolder : MonoBehaviour
     public int M_Ammo = 25;
     public int L_Ammo = 100;
     private int _weaponInHand = 0;
-    private PlayerScript _playerScript;
+    [SerializeField] private PlayerScript _playerScript;
     public DataUnityEvent GunShot;
 
-    private void Awake()
-    {
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-    }
+
     private void Start()
     {
         SwitchWeapons();
     }
     void Update()
     {
-        if (_playerScript._playerIsDead) Destroy(gameObject);
         int formerWeapon = _weaponInHand;
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
