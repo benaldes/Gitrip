@@ -7,7 +7,7 @@ public class BossSpawner : MonoBehaviour
     public List<GameObject> Enemies = new List<GameObject>();
     public void SpawnBoss()
     {
-        Instantiate(Enemies[0], transform);
+        Instantiate(Enemies[0]);
     }
 
     

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class BossHPBar : MonoBehaviour
     void Update()
     {
         if(Show && menu.alpha < 1)
-        { menu.alpha += Time.deltaTime; }
+        { menu.alpha += Time.deltaTime/4; }
         else if(!Show && menu.alpha > 0)
         { menu.alpha -= Time.deltaTime; }  
     }
@@ -28,7 +29,10 @@ public class BossHPBar : MonoBehaviour
     }
     public void UpdateHP(Component component, object data)
     { if (data is int) { slider.value = (int)data; } }
-    public void BossIsDead()
-    { Show = false; }
+    public void BossIsDead(Component component, object data)
+    {
+        Debug.LogError("boss  is  dead");
+        Show = false;
+    }
 
 }

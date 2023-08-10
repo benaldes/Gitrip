@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   M_Ammo: 5
   L_Ammo: 100
+  _playerScript: {fileID: 4443837800414157927}
   GunShot:
     m_PersistentCalls:
       m_Calls:
@@ -388,26 +389,23 @@ MonoBehaviour:
   PlayerDamage: 0
   WalkSpeed: 50
   AttackSpeed: 10
-  ActualAttackSpeed: 0
   DodgeChance: 10
-  AmmoCount: 100
   Level: 1
   Experience: 0
   ExperienceToLevelUp: 10
+  ActualAttackSpeed: 0
   _playerIsDead: 0
   _invincible: 0
+  _playerInput: {fileID: 2959093386656419310}
+  _playerRigidbody2D: {fileID: 2117478404981530393}
+  _PlayerAudio: {fileID: 3530403991637985341}
   _PlayerSpriteRenderer: {fileID: 4194006551286373457}
-  _playerTriggerCollider2D: {fileID: 5643693769188613790}
-  _playerCollider2D: {fileID: 9129449034528988574}
   _playerDeathSound: {fileID: 8300000, guid: b16d173236ce488468162d00597618ab, type: 3}
   _PlayerGetHitSound: {fileID: 8300000, guid: 9a4f4b5eb384a4f4fb9834156ddf3db7, type: 3}
   _playerDodgeSound: {fileID: 8300000, guid: 85d1422f2fbcd144eae3755b5c5dad57, type: 3}
   _playerAnimator: {fileID: 8070755296462596506}
+  _WeaponHolder: {fileID: 0}
   AboveHeadDamageText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
-  StatsText: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  DeathPanel: {fileID: 0}
-  _deathScore: {fileID: 0}
   PlayerTakeDmgEvent:
     m_PersistentCalls:
       m_Calls:
@@ -453,6 +451,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  PlayerIsDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b220910bb95519a45a36bccd1da41600, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &855504312768276763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,9 +478,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6175f1c995a661d4cb3855318e2dd2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSoundIntrvel: 0.4
   GrassWalkSound: {fileID: 8300000, guid: 84d31fd0251c6d546a73060b1b317116, type: 3}
   PlayerAnimator: {fileID: 8070755296462596506}
-  walkSoundIntrvel: 0.4
+  _playerScript: {fileID: 4443837800414157927}
+  _playerRigidbody2D: {fileID: 2117478404981530393}
+  _playerAudioSource: {fileID: 3530403991637985341}
 --- !u!114 &2959093386656419310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +497,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Diraction: {x: 0, y: 0, z: 0}
+  GamePaused:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 73a87c89e0f6ad44ab422bb309372093, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &2117478404981530393
 Rigidbody2D:
   serializedVersion: 4
@@ -751,9 +782,17 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1355646798857723919}
+    - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
       propertyPath: _ammoType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 3147383376546167719}
     - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
       propertyPath: _bulletRange
       value: 0.4
@@ -766,6 +805,10 @@ PrefabInstance:
       propertyPath: _ammoCostForShot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4812100395705425745, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+      propertyPath: _currentWeaponRigidbody2D
+      value: 
+      objectReference: {fileID: 5470636484981364153}
     - target: {fileID: 5200202802507238220, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -775,9 +818,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+--- !u!82 &3147383376546167719 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2345777824403988290, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+  m_PrefabInstance: {fileID: 801675926006293733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3662291218156612665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4175736754522261724, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
+  m_PrefabInstance: {fileID: 801675926006293733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &5470636484981364153 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4669030927719821660, guid: 9025023201b07af4aad0b132877bdf83, type: 3}
   m_PrefabInstance: {fileID: 801675926006293733}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5272045342445994576
@@ -797,9 +850,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5946319230390147348, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1355646798857723919}
+    - target: {fileID: 5946319230390147348, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
       propertyPath: _ammoType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5946319230390147348, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 7020575261576976803}
     - target: {fileID: 5946319230390147348, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
       propertyPath: _weaponHolder
       value: 
@@ -808,6 +869,10 @@ PrefabInstance:
       propertyPath: _ammoCostForShot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5946319230390147348, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
+      propertyPath: _currentWeaponRigidbody2D
+      value: 
+      objectReference: {fileID: 1214810887499008334}
     - target: {fileID: 6524938197625142285, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -895,6 +960,11 @@ Rigidbody2D:
 --- !u!4 &1416151143203864157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6524938197625142285, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
+  m_PrefabInstance: {fileID: 5272045342445994576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7020575261576976803 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2901454292912167923, guid: 7c64701ee0ed63e42858a8dc0cffcffb, type: 3}
   m_PrefabInstance: {fileID: 5272045342445994576}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8305341054745630502
@@ -986,9 +1056,17 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 7552841236360419225}
+    - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
       propertyPath: _weaponHolder
       value: 
       objectReference: {fileID: 2098571656858722442}
+    - target: {fileID: 5462890736954553451, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
+      propertyPath: _currentWeaponRigidbody2D
+      value: 
+      objectReference: {fileID: 5584115844993131529}
     m_RemovedComponents:
     - {fileID: 3270959757626673419, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
     m_RemovedGameObjects: []
@@ -1099,6 +1177,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &5584115844993131529 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4484666492002431791, guid: ac1e17b8c67927746abf843da14d3818, type: 3}
+  m_PrefabInstance: {fileID: 8305341054745630502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7106867286409032934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1288827236942996416, guid: ac1e17b8c67927746abf843da14d3818, type: 3}

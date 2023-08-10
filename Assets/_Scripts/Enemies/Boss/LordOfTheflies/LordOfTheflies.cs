@@ -20,16 +20,15 @@ public class LordOfTheflies : MonoBehaviour
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private EnemyGun _Gun;
     [SerializeField] private Animator _animator;
-    [SerializeField] private CinemachineVirtualCamera _cam;
     [SerializeField] private AudioClip _phaseTwoTrans;
     public DataUnityEvent StartBossFight;
     public DataUnityEvent FightIsHit;
+    public DataUnityEvent BossIsDead;
 
     private GameObject _player;
     private Vector3 _currentPoint;
     void Start()
     {
-        _cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         _player = GameObject.FindGameObjectWithTag("Player");
         _currentPoint = transform.position;
         StartBossFight.Invoke(this, HP);
@@ -63,6 +62,8 @@ public class LordOfTheflies : MonoBehaviour
         FightIsHit.Invoke(this,HP);
         if (HP <= 0)
         {
+            Debug.LogError("boss  is  dead in lord");
+            BossIsDead.Invoke(this, this);
             _isDead = true;
             Death();
         }
@@ -74,11 +75,13 @@ public class LordOfTheflies : MonoBehaviour
     }
     private void Death()
     {
+        
         GameObject.Find("Clock").GetComponent<Clock>()._bossFight = false;
         Destroy(gameObject);
     }
     public  void IntroEnter()
     {
+        _Gun.enabled = true;
         _Gun._phase = 0;
     }
     
@@ -86,7 +89,6 @@ public class LordOfTheflies : MonoBehaviour
     {
         gameObject.GetComponent<AudioSource>().clip = _phaseTwoTrans;
         gameObject.GetComponent<AudioSource>().Play();
-        _cam.Follow = gameObject.transform;
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         _player.GetComponent<PlayerScript>()._invincible = true;
@@ -99,7 +101,6 @@ public class LordOfTheflies : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         _player.GetComponent<PlayerScript>()._invincible = false;
-        _cam.Follow = _player.transform;
         Invincible = false;
         _Gun._phase = 1;
     }

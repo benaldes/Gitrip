@@ -73,12 +73,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174541090887471752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dafa0505fae5ad0448c7161080b11edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _phase: -1
+  _phase: 0
   _dmg: 10
   _fireRate: 0.5
   _bulletSpeedMin: 6
@@ -376,15 +376,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f35b63aab974944d9f674980c21f87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 2000
-  HP: 2000
+  MaxHP: 100
+  HP: 100
   _isDead: 0
   Invincible: 0
   _sprite: {fileID: 921018683503396552}
   _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   _Gun: {fileID: 5269436654127202599}
   _animator: {fileID: 6407445984587371983}
-  _cam: {fileID: 0}
   _phaseTwoTrans: {fileID: 8300000, guid: 505997bfc4c9c9b4a86d83e51d30bf42, type: 3}
   StartBossFight:
     m_PersistentCalls:
@@ -405,6 +404,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: dee974c7e79f97948a2f4eb729479d79, type: 2}
+        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BossIsDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6446cee80d154a540ab92718c804452d, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 0
