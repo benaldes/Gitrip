@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [HideInInspector] public int Dmg = 10;
-    [HideInInspector] public float BulletRange;
+    public int Dmg = 10;
+    public float BulletRange;
+
+    [SerializeField] private PlayerScript _playerScript;
 
     private float timer = 0;
 
+    private void Start()
+    {
+        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.gameObject.tag == "Player" )
         {
-            collision.GetComponent<PlayerScript>().PlayerTakeDamage(Dmg);
+            _playerScript.PlayerTakeDamage(Dmg);
             Destroy(gameObject);
         }
+
     }
     private void Update()
     {

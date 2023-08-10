@@ -18,15 +18,32 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gunShotPoint;
     [SerializeField] private AudioClip _gunShotSound;
-    [SerializeField, HideInInspector] private SpriteRenderer _gunRenderer;
-    [SerializeField, HideInInspector] private WeaponHolder _weaponHolder;
-    [SerializeField, HideInInspector] private GameObject _player;
-    [SerializeField, HideInInspector] private Camera _camera;
-    [SerializeField, HideInInspector] private Rigidbody2D _currentWeaponRigidbody2D;
-    [SerializeField, HideInInspector] private AudioSource _audioSource;
+    [SerializeField] private SpriteRenderer _gunRenderer;
+    [SerializeField] private WeaponHolder _weaponHolder;
+
+
+    private GameObject _player;
+    private Camera _camera;
+    private Rigidbody2D _currentWeaponRigidbody2D;
+    private PlayerScript _playerScript;
+    private AudioSource _audioSource;
     private List<int> angleList = new List<int>();
     #endregion
+
     private float _gunShotTimer = 10;
+
+
+
+
+    private void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerScript = _player.GetComponent<PlayerScript>();
+        _currentWeaponRigidbody2D = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
+        _camera = Camera.FindAnyObjectByType<Camera>();
+    }
+    
     void Update()
     {
         if (_isWeapon)
@@ -54,7 +71,6 @@ public class Gun : MonoBehaviour
     }
     public void GunShot()
     {
-        if (Time.timeScale == 0) return;
         if (_gunShotTimer > _fireRate) { } else return;
         if (ReduceAmmo()) { } else return;
         _weaponHolder.GunFired();

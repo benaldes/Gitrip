@@ -2,8 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-
-
 public class PlayerScript : MonoBehaviour
 {
     #region Player Stats
@@ -11,36 +9,49 @@ public class PlayerScript : MonoBehaviour
     public int HP = 100;
     public int PlayerDamage = 10;
     public int WalkSpeed = 50;
-    public float AttackSpeed = 10; 
+    public float AttackSpeed = 10;
+    public float ActualAttackSpeed;
     public int DodgeChance = 10;
+    public int AmmoCount = 10;
+
     public int Level = 1;
     public int Experience = 0;
     public int ExperienceToLevelUp = 10;
-    [HideInInspector] public float ActualAttackSpeed;
-    [HideInInspector] public bool _playerIsDead = false;
-    [HideInInspector] public bool _invincible = false;
+
+    public bool _playerIsDead = false;
+    public bool _invincible = false;
     #endregion
     #region Player Scrip
-    [SerializeField,HideInInspector] private PlayerInput _playerInput;
-    [SerializeField,HideInInspector] private Rigidbody2D _playerRigidbody2D;
-    [SerializeField,HideInInspector] private AudioSource _PlayerAudio;
-    [SerializeField,HideInInspector] private SpriteRenderer _PlayerSpriteRenderer;
-    [SerializeField,HideInInspector] private AudioClip _playerDeathSound;
-    [SerializeField,HideInInspector] private AudioClip _PlayerGetHitSound;
-    [SerializeField,HideInInspector] private AudioClip _playerDodgeSound;
-    [SerializeField,HideInInspector] private Animator _playerAnimator;
-    [SerializeField] private GameObject _WeaponHolder;
+    private PlayerInput _playerInput;
+    private Rigidbody2D _playerRigidbody2D;
+    private AudioSource _PlayerAudio;
+    [SerializeField] private SpriteRenderer _PlayerSpriteRenderer;
+    [SerializeField] private Collider2D _playerTriggerCollider2D;
+    [SerializeField] private Collider2D _playerCollider2D;
+    [SerializeField] private AudioClip _playerDeathSound;
+    [SerializeField] private AudioClip _PlayerGetHitSound;
+    [SerializeField] private AudioClip _playerDodgeSound;
+    [SerializeField] private Animator _playerAnimator;
     #endregion
-    [SerializeField,HideInInspector] private GameObject AboveHeadDamageText;
+
+    [SerializeField] private TextMeshProUGUI _AmmoText;
+    [SerializeField] private GameObject AboveHeadDamageText;
+    [SerializeField] private TextMeshProUGUI StatsText;
+    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private GameObject DeathPanel;
+    [SerializeField] private TextMeshProUGUI _deathScore;
+    private TextMeshProUGUI _scoreUIText;
     public DataUnityEvent PlayerTakeDmgEvent;
     public DataUnityEvent PlayerGetExp;
     public DataUnityEvent PlayerIsBorn;
-    public DataUnityEvent PlayerIsDead;
 
-
-    private int _expHolder = 0;
-
-
+    private void Awake()
+    {
+        _scoreUIText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        _PlayerAudio = GetComponent<AudioSource>();
+        _playerRigidbody2D = GetComponent<Rigidbody2D>();
+        _playerInput = GetComponent<PlayerInput>();
+    }
     private void Start()
     {
         PlayerIsBorn.Invoke(this, this);
@@ -53,11 +64,8 @@ public class PlayerScript : MonoBehaviour
             _playerInput.PlayerInputFunc();
         }
         else if (!_playerIsDead) StartCoroutine(Death());
-        if (Experience != _expHolder)
-        {
-            _expHolder = Experience;
-            PlayerGetExp.Invoke(this, ExperienceToLevelUp); 
-        }
+        if (Experience.ToString() != _scoreUIText.text)
+        { PlayerGetExp.Invoke(this, ExperienceToLevelUp); }
 
     }
     private IEnumerator Death()
@@ -66,20 +74,29 @@ public class PlayerScript : MonoBehaviour
         _playerRigidbody2D.bodyType = RigidbodyType2D.Static;
         _PlayerAudio.clip = _playerDeathSound;
         _PlayerAudio.Play();
-        Destroy(_WeaponHolder);
         _playerAnimator.SetTrigger("Death");
         yield return new WaitForSeconds(0.40f);
-        PlayerIsDead.Invoke(this, this);
+        DeathPanel.SetActive(true);
+        _deathScore.text = "Score: " + Experience;
     }
     private void UpdateStats()
     {
 
         if (HP > MaxHP) { HP = MaxHP; }
         ActualAttackSpeed = 5f / AttackSpeed;
+        StatsText.text = "Damage: " + PlayerDamage.ToString() +
+        "\nSpeed: " + WalkSpeed.ToString() +
+        "\nAttack Speed: " + AttackSpeed.ToString() +
+        "\nDodge Chance: " + DodgeChance.ToString();
+        _scoreUIText.text = Experience.ToString();
     }
     public Vector3 GetDiraction()
     {
         return _playerInput.Diraction;
+    }
+    public void PauseMenu()
+    {
+        pauseMenu.SetPauseMenu();
     }
     public void PlayerTakeDamage(int Damage)
     {

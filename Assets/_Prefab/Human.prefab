@@ -403,6 +403,7 @@ MonoBehaviour:
   _PlayerGetHitSound: {fileID: 8300000, guid: 9a4f4b5eb384a4f4fb9834156ddf3db7, type: 3}
   _playerDodgeSound: {fileID: 8300000, guid: 85d1422f2fbcd144eae3755b5c5dad57, type: 3}
   _playerAnimator: {fileID: 8070755296462596506}
+  _AmmoText: {fileID: 0}
   AboveHeadDamageText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   StatsText: {fileID: 0}
   pauseMenu: {fileID: 0}

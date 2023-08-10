@@ -10,7 +10,6 @@ public class LordOfTheFliesIntro : StateMachineBehaviour
     [SerializeField] private GameObject _player;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Time.timeScale = 0;
         _boss = GameObject.FindGameObjectWithTag("LordOfTheflies").gameObject;
         _cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
         _player = GameObject.FindGameObjectWithTag("Player").gameObject;
@@ -22,7 +21,6 @@ public class LordOfTheFliesIntro : StateMachineBehaviour
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Time.timeScale = 1;
         _cam.Follow = _player.transform;
         _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         _boss.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

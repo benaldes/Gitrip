@@ -7,28 +7,33 @@ public class Bullet : MonoBehaviour
 {
     public int Dmg = 10;
     public float BulletRange;
+    [SerializeField] private PlayerScript _playerScript;
     private float timer = 0;
 
+    private void Start()
+    {
+        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "enemy")
         {
-            collision.GetComponent<Enemy>().takeDamage(Dmg);
+            collision.GetComponent<Enemy>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "FatMen")
         {
-            collision.GetComponent<FatMen>().takeDamage(Dmg);
+            collision.GetComponent<FatMen>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "Sklislime")
         {
-            collision.GetComponent<Sklislime>().takeDamage(Dmg);
+            collision.GetComponent<Sklislime>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "LordOfTheflies")
         {
-            collision.GetComponent<LordOfTheflies>().takeDamage(Dmg);
+            collision.GetComponent<LordOfTheflies>().takeDamage(_playerScript.PlayerDamage + Dmg);
             Destroy(gameObject);
         }
 

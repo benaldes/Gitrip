@@ -7,18 +7,21 @@ public class PauseMenu : MonoBehaviour
 {
     public bool IsGamePaused = false;
 
-    private void OnEnable()
+
+    public void SetPauseMenu()
+    {      
+        if (!IsGamePaused) PauseGame();
+        else ResumeGame();   
+    }
+    public void PauseGame()
     {
+        IsGamePaused = true;
         Time.timeScale = 0f;
-        IsGamePaused = true;
+        gameObject.SetActive(true);
     }
-    private void OnDisable()
+    public void ResumeGame()
     {
-        Time.timeScale = 1f;
-    }
-    public void Resume()
-    {
-        IsGamePaused = true;
+        IsGamePaused = false;
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
