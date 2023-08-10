@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-    [SerializeField] private AudioClip GrassWalkSound;
-    [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private float walkSoundIntrvel = 0.4f;
-
     private float walkSoundTimer = 0f;
 
-    private PlayerScript _playerScript;
-    private Rigidbody2D _playerRigidbody2D;
-    private AudioSource _playerAudioSource;
+    [SerializeField, HideInInspector] private AudioClip GrassWalkSound;
+    [SerializeField, HideInInspector] private Animator PlayerAnimator;
+    [SerializeField, HideInInspector] private PlayerScript _playerScript;
+    [SerializeField, HideInInspector] private Rigidbody2D _playerRigidbody2D;
+    [SerializeField, HideInInspector] private AudioSource _playerAudioSource;
 
-    private void Awake()
-    {
-        _playerScript = GetComponent<PlayerScript>();
-        _playerRigidbody2D = GetComponent<Rigidbody2D>();
-        _playerAudioSource = GetComponent<AudioSource>();
-    }
     private void FixedUpdate()
     {
         Vector3 diraction = _playerScript.GetDiraction();
