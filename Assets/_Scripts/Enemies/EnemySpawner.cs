@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public float PlayerRadiosNotToSpawn = 1f, spawnTimer = 3f;
     public Vector2 NoSpawnRadios = new Vector2 (3, 3);
     public Collider2D SpawnArea;
+    public Collider2D AreaNotToSpawn;
     public List<EnemyX> Enemies = new List<EnemyX>();
     public int WaveNumber = 1;
     public int WaveCount;

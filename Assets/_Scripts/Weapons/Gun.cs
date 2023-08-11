@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
     [SerializeField, HideInInspector] private SpriteRenderer _gunRenderer;
     [SerializeField, HideInInspector] private WeaponHolder _weaponHolder;
     [SerializeField, HideInInspector] private GameObject _player;
-    [SerializeField, HideInInspector] private Camera _camera;
+    [SerializeField] private Camera _camera;
     [SerializeField, HideInInspector] private Rigidbody2D _currentWeaponRigidbody2D;
     [SerializeField, HideInInspector] private AudioSource _audioSource;
     private List<int> angleList = new List<int>();

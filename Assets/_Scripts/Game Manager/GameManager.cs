@@ -14,25 +14,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelUpPanal _levelUpScript;
     [SerializeField] private Slider _ExpBar;
     [SerializeField] private GameObject _clock;
-    
+    [SerializeField] private GameObject _player;
 
     
     private PlayerScript _playerScript;
 
 
-    private void Awake()
-    {
-        
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-
-        if (_playerScript != null)
-            Instance = this;
-        else 
-            Destroy(gameObject);
-    }
+ 
     private void Start()
     {
         Time.timeScale = 1.0f;
+        _playerScript = _player.GetComponent<PlayerScript>();
     }
     public void Levelup()
     {
@@ -51,6 +43,11 @@ public class GameManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public  void NextLevel(Component component, object data)
+    {
+        if(SceneManager.sceneCount+1 > SceneManager.GetActiveScene().buildIndex)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

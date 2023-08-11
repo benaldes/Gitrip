@@ -71,6 +71,11 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.40f);
         PlayerIsDead.Invoke(this, this);
     }
+    public void PlayerIntro()
+    {
+        _WeaponHolder.SetActive(true);
+        _playerRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+    }
     private void UpdateStats()
     {
 
