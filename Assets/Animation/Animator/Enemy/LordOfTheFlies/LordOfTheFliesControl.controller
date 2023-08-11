@@ -218,8 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5056a46fb3e13947b0dbf5e61109ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossScript: {fileID: 0}
-  _boss: {fileID: 0}
+  _bossScript: {fileID: 2400495122246660776, guid: c49358dc72f33a9479e1abde8093bcd5, type: 3}
   _rbBoss: {fileID: 887880451552850108, guid: c49358dc72f33a9479e1abde8093bcd5, type: 3}
 --- !u!114 &6025682144889724352
 MonoBehaviour:

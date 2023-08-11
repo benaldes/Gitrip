@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,7 @@ public class LordOfTheflies : MonoBehaviour
     public DataUnityEvent StartBossFight;
     public DataUnityEvent FightIsHit;
     public DataUnityEvent BossIsDead;
+
 
     private GameObject _player;
     private Vector3 _currentPoint;

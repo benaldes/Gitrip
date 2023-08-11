@@ -6,14 +6,12 @@ using UnityEngine;
 public class LordOfTheFliesIntro : StateMachineBehaviour
 {
     [SerializeField] private LordOfTheflies _bossScript;
-    [SerializeField] private GameObject _boss;
     [SerializeField] private Rigidbody2D _rbBoss;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _boss = GameObject.FindGameObjectWithTag("LordOfTheflies");
-        _rbBoss = _boss.GetComponent<Rigidbody2D>();
-        _bossScript = _boss.GetComponent<LordOfTheflies>();
+        _rbBoss = animator.GetComponentInParent<Rigidbody2D>();
+        _bossScript = animator.GetComponentInParent<LordOfTheflies>();
         _rbBoss.bodyType = RigidbodyType2D.Static;
         _bossScript.Invincible = true;
     }
