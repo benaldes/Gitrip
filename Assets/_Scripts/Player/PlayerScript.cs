@@ -21,17 +21,17 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public bool _invincible = false;
     #endregion
     #region Player Scrip
-    [SerializeField,HideInInspector] private PlayerInput _playerInput;
-    [SerializeField,HideInInspector] private Rigidbody2D _playerRigidbody2D;
-    [SerializeField,HideInInspector] private AudioSource _PlayerAudio;
-    [SerializeField,HideInInspector] private SpriteRenderer _PlayerSpriteRenderer;
-    [SerializeField,HideInInspector] private AudioClip _playerDeathSound;
-    [SerializeField,HideInInspector] private AudioClip _PlayerGetHitSound;
-    [SerializeField,HideInInspector] private AudioClip _playerDodgeSound;
-    [SerializeField,HideInInspector] private Animator _playerAnimator;
+    [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private Rigidbody2D _playerRigidbody2D;
+    [SerializeField] private AudioSource _PlayerAudio;
+    [SerializeField] private SpriteRenderer _PlayerSpriteRenderer;
+    [SerializeField] private AudioClip _playerDeathSound;
+    [SerializeField] private AudioClip _PlayerGetHitSound;
+    [SerializeField] private AudioClip _playerDodgeSound;
+    [SerializeField] private Animator _playerAnimator;
     [SerializeField] private GameObject _WeaponHolder;
     #endregion
-    [SerializeField,HideInInspector] private GameObject AboveHeadDamageText;
+    [SerializeField] private GameObject AboveHeadDamageText;
     public DataUnityEvent PlayerTakeDmgEvent;
     public DataUnityEvent PlayerGetExp;
     public DataUnityEvent PlayerIsBorn;

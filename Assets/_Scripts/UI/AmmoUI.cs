@@ -11,9 +11,13 @@ public class AmmoUI : MonoBehaviour
 
     public void UpdateAmmo(Component component, object data)
     {
-        WeaponHolder ammo = component as WeaponHolder;
-        _shotgunBulletText.text = ammo.M_Ammo.ToString();
-        _rifleBulletText.text = ammo.L_Ammo.ToString();
+        
+            WeaponHolder ammo = component as WeaponHolder;
+            _shotgunBulletText.text = ammo.M_Ammo.ToString();
+            _rifleBulletText.text = ammo.L_Ammo.ToString();
+        
+       
+        
     }
     
 }

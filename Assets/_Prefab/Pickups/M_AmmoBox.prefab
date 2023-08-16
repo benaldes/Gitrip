@@ -117,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 8028198574220813765}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8279489353051199517
 BoxCollider2D:
@@ -176,9 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5fad96b62dd5a42a731a16a68f6a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPickUpSound: {fileID: 0}
+  ammoPickUpSound: {fileID: 6806883453154836700}
   _ammo: 15
   _ammoType: 1
+  _spriteRenderer: {fileID: 2299098342523397894}
+  _collider: {fileID: 8279489353051199517}
   AmmoPickUp:
     m_PersistentCalls:
       m_Calls:

@@ -18,12 +18,12 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gunShotPoint;
     [SerializeField] private AudioClip _gunShotSound;
-    [SerializeField, HideInInspector] private SpriteRenderer _gunRenderer;
-    [SerializeField, HideInInspector] private WeaponHolder _weaponHolder;
-    [SerializeField, HideInInspector] private GameObject _player;
+    [SerializeField] private SpriteRenderer _gunRenderer;
+    [SerializeField] private WeaponHolder _weaponHolder;
+    [SerializeField] private GameObject _player;
     [SerializeField] private Camera _camera;
-    [SerializeField, HideInInspector] private Rigidbody2D _currentWeaponRigidbody2D;
-    [SerializeField, HideInInspector] private AudioSource _audioSource;
+    [SerializeField] private Rigidbody2D _currentWeaponRigidbody2D;
+    [SerializeField] private AudioSource _audioSource;
     private List<int> angleList = new List<int>();
     #endregion
     private float _gunShotTimer = 10;

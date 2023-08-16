@@ -179,6 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 3871759524481846667}
+  _audioSource: {fileID: 4801028753271413468}
+  _explosion: {fileID: 1340181753893138276}
+  _collider: {fileID: 1633942281402853967}
 --- !u!114 &1340181753893138276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d593b869d816d0d49b5b94bf6fa9c83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammoType: 0
   _dmg: 50
   _fireRate: 0
   _bulletSpeed: 10
@@ -201,8 +205,13 @@ MonoBehaviour:
   _isWeapon: 0
   _bullet: {fileID: 1860706049015914, guid: 72ac23f939804d84eb9ad2bc3b2a7fae, type: 3}
   _gunShotPoint: {fileID: 8522387856161801483}
-  _gunShotSound: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
+  _gunShotSound: {fileID: 8300000, guid: f756a287eb325834888e81736cd30107, type: 3}
   _gunRenderer: {fileID: 477109309896373346}
+  _weaponHolder: {fileID: 5148437176652597367, guid: c041307ac3f8e384b9cd780ad6217a24, type: 3}
+  _player: {fileID: 1355646798857723919, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _camera: {fileID: 0}
+  _currentWeaponRigidbody2D: {fileID: 3113301715194378504}
+  _audioSource: {fileID: 4801028753271413468}
 --- !u!82 &4801028753271413468
 AudioSource:
   m_ObjectHideFlags: 0
@@ -213,7 +222,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f756a287eb325834888e81736cd30107, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -380,6 +380,7 @@ MonoBehaviour:
   HP: 100
   _isDead: 0
   Invincible: 0
+  _trophy: {fileID: 4282274083626770085, guid: 20d58ddc3fbd8d14b9639a8b7bcb06d8, type: 3}
   _sprite: {fileID: 921018683503396552}
   _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   _Gun: {fileID: 5269436654127202599}

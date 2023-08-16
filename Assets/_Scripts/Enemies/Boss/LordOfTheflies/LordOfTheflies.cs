@@ -1,13 +1,5 @@
-using Cinemachine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Events;
-using static Unity.Collections.AllocatorManager;
 
 public class LordOfTheflies : MonoBehaviour
 {
@@ -16,7 +8,7 @@ public class LordOfTheflies : MonoBehaviour
     public bool _isDead = false;
     public bool Invincible = false;
 
-     
+    [SerializeField] private GameObject _trophy;
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private EnemyGun _Gun;
@@ -64,7 +56,6 @@ public class LordOfTheflies : MonoBehaviour
         FightIsHit.Invoke(this,HP);
         if (HP <= 0)
         {
-            Debug.LogError("boss  is  dead in lord");
             BossIsDead.Invoke(this, this);
             _isDead = true;
             Death();
@@ -77,7 +68,7 @@ public class LordOfTheflies : MonoBehaviour
     }
     private void Death()
     {
-        
+        Instantiate(_trophy,gameObject.transform.position,Quaternion.identity);
         GameObject.Find("Clock").GetComponent<Clock>()._bossFight = false;
         Destroy(gameObject);
     }

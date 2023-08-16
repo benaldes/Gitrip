@@ -6,16 +6,10 @@ using UnityEngine;
 public class PickUpBulletExplosion : MonoBehaviour
 {
     [SerializeField] private GameObject _sprite;
-    private PlayerScript _playerScript;
-    private AudioSource _audioSource;
-    private Gun _explosion;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private Gun _explosion;
+    [SerializeField] private Collider2D _collider;
 
-    private void Awake()
-    {
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-        _audioSource = GetComponent<AudioSource>();
-        _explosion = GetComponent<Gun>();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +24,7 @@ public class PickUpBulletExplosion : MonoBehaviour
         
         _audioSource.Play();
         _explosion.GunShot();
-        Destroy(GetComponent<Collider2D>());
+        Destroy(_collider);
         Destroy(_sprite);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
