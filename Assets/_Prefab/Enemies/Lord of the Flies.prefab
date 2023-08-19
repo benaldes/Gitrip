@@ -376,16 +376,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f35b63aab974944d9f674980c21f87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 0
+  hp: 0
+  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   MaxHP: 100
   HP: 100
   _isDead: 0
   Invincible: 0
   _trophy: {fileID: 4282274083626770085, guid: 20d58ddc3fbd8d14b9639a8b7bcb06d8, type: 3}
   _sprite: {fileID: 921018683503396552}
-  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   _Gun: {fileID: 5269436654127202599}
   _animator: {fileID: 6407445984587371983}
   _phaseTwoTrans: {fileID: 8300000, guid: 505997bfc4c9c9b4a86d83e51d30bf42, type: 3}
+  _audioSource: {fileID: 615629757907104223}
+  _rigidbody2D: {fileID: 887880451552850108}
+  _player: {fileID: 1355646798857723919, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _playerScript: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _playerRigidbody2D: {fileID: 2117478404981530393, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _clock: {fileID: 1036772499713877635, guid: ac68355f09996db47bf24dfe9f18c542, type: 3}
   StartBossFight:
     m_PersistentCalls:
       m_Calls:

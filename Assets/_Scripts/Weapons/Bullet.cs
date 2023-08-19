@@ -13,17 +13,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            collision.GetComponent<Enemy>().takeDamage(Dmg);
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.tag == "FatMen")
-        {
-            collision.GetComponent<FatMen>().takeDamage(Dmg);
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.tag == "Sklislime")
-        {
-            collision.GetComponent<Sklislime>().takeDamage(Dmg);
+            collision.GetComponent<AbstractEnemy>().TakeDamage(Dmg);
             Destroy(gameObject);
         }
         else if (collision.gameObject.tag == "LordOfTheflies")

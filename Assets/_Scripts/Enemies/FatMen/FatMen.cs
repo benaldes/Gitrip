@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class FatMen : MonoBehaviour
+public class FatMen : AbstractEnemy
 {
-    public int HP = 50;
     public int Damage = 30;
     public float ExplosionRadios = 2;
     public float ExplosionDelay = 1;
@@ -16,7 +17,6 @@ public class FatMen : MonoBehaviour
 
     [SerializeField] private PlayerScript _playerScript;
     [SerializeField] private LayerMask _playerLayers;
-    [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private Animator _animator;
     [SerializeField] private Collider2D _collider2D;
     [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -24,9 +24,22 @@ public class FatMen : MonoBehaviour
     [SerializeField] private AudioClip _explode;
     [SerializeField] private GameObject _explosion;
 
-    private void Start()
+    public override void TakeDamage(int damage)
     {
-        _playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        if (!_isDead) DamageNumbers(damage);
+        hp -= damage;
+        if (hp <= 0)
+        {
+            _isDead = true;
+            Die();
+        }
+    }
+    public override void Die()
+    {
+        _animator.SetTrigger("Death");
+        Destroy(_collider2D);
+        _playerScript.Experience += ExpGain;
+        Destroy(gameObject,0.19f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,43 +55,13 @@ public class FatMen : MonoBehaviour
         yield return new WaitForSeconds(ExplosionDelay);
         _explosion.SetActive(true);
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(transform.position, ExplosionRadios, _playerLayers);
-        foreach (Collider2D player in hitplayer)
-        {
-            player.GetComponent<PlayerScript>().PlayerTakeDamage(Damage);
-        }
+        _playerScript.PlayerTakeDamage(Damage);
         Destroy(_collider2D);
-        //Destroy(_rigidbody2D);
         _audioSource.clip = _explode;
         _audioSource.Play();
         yield return new WaitForSeconds(1);
-        Destroy(gameObject);
-    }
-    public void Knockback(Vector2 direction, float Knockbackforce)
-    {
-        _rigidbody2D.AddForce(direction * Knockbackforce, ForceMode2D.Force);
-    }
-    public void takeDamage(int dmg)
-    {
-        if (!_isDead) DamageNumbers(dmg);
-        HP -= dmg;
-        if (HP <= 0)
-        {
-            _isDead = true;
-            StartCoroutine(Death());
-        }
+        Die();
     }
 
-    private IEnumerator Death()
-    {
-        _animator.SetTrigger("Death");
-        Destroy(_collider2D);
-        _playerScript.Experience += ExpGain;
-        yield return new WaitForSeconds(0.19f);        
-        Destroy(gameObject);
-    }
-    public void DamageNumbers(int dmg)
-    {
-        var dmgNum = Instantiate(_DamageNambersText, transform.position, Quaternion.identity, transform);
-        dmgNum.GetComponent<TextMeshPro>().text = dmg.ToString();
-    }
+
 }

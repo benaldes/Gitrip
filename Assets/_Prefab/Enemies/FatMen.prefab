@@ -51,14 +51,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16196b0c6866c5d4dae300a2194418b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 40
+  maxHP: 0
+  hp: 0
+  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   Damage: 30
   ExplosionRadios: 1.2
   ExplosionDelay: 1
+  ExpGain: 2
+  _playerScript: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
   _playerLayers:
     serializedVersion: 2
     m_Bits: 512
-  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   _animator: {fileID: 6398693652110895248}
   _collider2D: {fileID: 4287164710181284911}
   _rigidbody2D: {fileID: 8171544691679917255}

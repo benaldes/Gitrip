@@ -256,13 +256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 100
-  HP: 100
+  HP: 0
   PlayerDamage: 0
   WalkSpeed: 50
   AttackSpeed: 10
   DodgeChance: 10
   Level: 1
-  Experience: 0
+  Experience: 19
   ExperienceToLevelUp: 10
   ActualAttackSpeed: 0
   _playerIsDead: 0
@@ -391,7 +391,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355646798857723919}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -510,7 +510,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1af533a2494ebca48af3a1537fcca2c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9a4f4b5eb384a4f4fb9834156ddf3db7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.282
   m_Pitch: 1

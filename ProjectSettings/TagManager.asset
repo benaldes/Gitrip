@@ -8,8 +8,6 @@ TagManager:
   - Revolver
   - AmmoCount
   - PIckup
-  - FatMen
-  - Sklislime
   - LordOfTheflies
   layers:
   - Default

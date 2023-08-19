@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Sklislime : MonoBehaviour
+public class Sklislime : AbstractEnemy
 {
-    public int HP = 20;
     public int Damage = 30;
     public int ExpGain = 5;
     public float DamageTimer = 1f;
@@ -14,7 +13,6 @@ public class Sklislime : MonoBehaviour
 
     private bool _isDead = false;
     [SerializeField] private PlayerScript _player;
-    [SerializeField] private GameObject _DamageNambersText;
     [SerializeField] private GameObject _sklislime;
     [SerializeField] private GameObject _splitParticle;
     [SerializeField] private Collider2D _sklislimeCollider2D;
@@ -23,9 +21,19 @@ public class Sklislime : MonoBehaviour
     [SerializeField] private AudioClip _sklislimeSplitSound;
     [SerializeField] private AudioSource _sklislimeAudioSource;
 
-    private void Awake()
+    public override void TakeDamage(int damage)
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        if (!_isDead) DamageNumbers(damage);
+        hp -= damage;
+        if (hp <= 0)
+        {
+            _isDead = true;
+            StartCoroutine(Death());
+        }
+    }
+    public override void Die()
+    {
+        Destroy(gameObject);
     }
 
     void Update()
@@ -42,21 +50,6 @@ public class Sklislime : MonoBehaviour
             Timer = 0f;
         }
     }
-    public void Knockback(Vector2 direction, float Knockbackforce)
-    {
-        _sklislimeRigidbody2D.AddForce(direction * Knockbackforce, ForceMode2D.Force);
-    }
-
-    public void takeDamage(int dmg)
-    {
-        if (!_isDead) DamageNumbers(dmg);
-        HP -= dmg;
-        if (HP <= 0 && !_isDead)
-        {
-            _isDead = true;
-            StartCoroutine(Death());
-        }
-    }
     private IEnumerator Death()
     {
         _sklislimeAudioSource.clip = _sklislimeSplitSound;
@@ -70,7 +63,7 @@ public class Sklislime : MonoBehaviour
         Destroy(_sklislimeCollider2D);
         _player.Experience += ExpGain;
         yield return new WaitForSeconds(DeathSplitTimer);
-        Destroy(gameObject);
+        Die();
     }
     private void Size(float Size ,int HP,int dmg)
     {
@@ -78,14 +71,11 @@ public class Sklislime : MonoBehaviour
         var split2 = Instantiate(_sklislime, transform.position + new Vector3(-1, 0), Quaternion.identity);
         split1.transform.localScale = new Vector3(Size, Size, Size);
         split2.transform.localScale = new Vector3(Size, Size, Size);
-        split1.GetComponent<Sklislime>().HP = HP;
-        split2.GetComponent<Sklislime>().HP = HP;
-        split1.GetComponent<Sklislime>().Damage = dmg;
-        split2.GetComponent<Sklislime>().Damage = dmg;
-    }
-    public void DamageNumbers(int dmg)
-    {
-        var dmgNum = Instantiate(_DamageNambersText, transform.position, Quaternion.identity, transform);
-        dmgNum.GetComponent<TextMeshPro>().text = dmg.ToString();
+        Sklislime splitS1 = split1.GetComponent<Sklislime>();
+        Sklislime splitS2 = split2.GetComponent<Sklislime>();
+        splitS1.hp = HP;
+        splitS2.hp = HP;
+        splitS1.Damage = dmg;
+        splitS2.Damage = dmg;
     }
 }

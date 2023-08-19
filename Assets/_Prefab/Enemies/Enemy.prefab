@@ -165,6 +165,9 @@ MonoBehaviour:
   _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   _sprite: {fileID: 7801750800104903370}
   _deathAnimator: {fileID: 2929209454527798161}
+  _collider2D: {fileID: 8752496878584001287}
+  _player: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
+  _thisEnemy: {fileID: 3794904876847359510}
 --- !u!114 &4515543791277334234
 MonoBehaviour:
   m_ObjectHideFlags: 0

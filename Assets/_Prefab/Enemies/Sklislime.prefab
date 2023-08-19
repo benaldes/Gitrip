@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4298520096227379203}
   m_Layer: 3
   m_Name: Sklislime
-  m_TagString: Sklislime
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,14 +53,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbab957439bb7d54eb67ad5712ee3f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 40
+  maxHP: 0
+  hp: 0
+  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
   Damage: 20
   ExpGain: 1
   DamageTimer: 1
   Timer: 0
   DeathSplitTimer: 1
-  _player: {fileID: 0}
-  _DamageNambersText: {fileID: 4640089467210624917, guid: 557fd5bd34f51634fa1aa9c5050241fd, type: 3}
+  _player: {fileID: 4443837800414157927, guid: 2afb50df1aa8da445bde29f87cc69fd0, type: 3}
   _sklislime: {fileID: 118191407629392484}
   _splitParticle: {fileID: 1304408651090959697}
   _sklislimeCollider2D: {fileID: 5604107347600832156}
