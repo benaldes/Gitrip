@@ -25,7 +25,7 @@ public class Sklislime : AbstractEnemy
     {
         if (!_isDead) DamageNumbers(damage);
         hp -= damage;
-        if (hp <= 0)
+        if (hp <= 0 && !_isDead)
         {
             _isDead = true;
             StartCoroutine(Death());
