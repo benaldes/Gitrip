@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     public int PlayerDamage = 10;
     public int WalkSpeed = 50;
     public float AttackSpeed = 10; 
-    public int DodgeChance = 10;
+    public int DodgeChance = 0;
     public int Level = 1;
     public int Experience = 0;
     public int ExperienceToLevelUp = 10;
@@ -40,7 +40,10 @@ public class PlayerScript : MonoBehaviour
 
     private int _expHolder = 0;
 
-
+    private void Awake()
+    {
+        _PlayerAudio = GetComponent<AudioSource>();
+    }
     private void Start()
     {
         PlayerIsBorn.Invoke(this, this);
@@ -89,10 +92,10 @@ public class PlayerScript : MonoBehaviour
     public void PlayerTakeDamage(int Damage)
     {
         if (_invincible) { return; }
-        if (DodgeCheck())
+        /*if (DodgeCheck())
         {
             return;
-        }
+        }*/
 
         if (HP > 0)
         {
@@ -102,7 +105,7 @@ public class PlayerScript : MonoBehaviour
             PlayerTakeDmgEvent.Invoke(this, HP);
         }
     }
-    private bool DodgeCheck()
+    /*private bool DodgeCheck()
     {
         float index = Random.Range(0, 101);
         if (index < DodgeChance)
@@ -118,9 +121,9 @@ public class PlayerScript : MonoBehaviour
     }
     public void DodgeShowText()
     {
-        var dodgeText = Instantiate(AboveHeadDamageText, transform.position, Quaternion.identity, transform);
+        var dodgeText = Instantiate(AboveHeadDamageText, transform.position, Quaternion.identity);
         dodgeText.GetComponent<TextMeshPro>().text = "Dodge";
-    }
+    }*/
     public IEnumerator Invulnerability()
     {
         Physics2D.IgnoreLayerCollision(3, 9, true);

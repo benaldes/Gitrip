@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347203613085401188}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.395, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5428080375216977178}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4194006551286373457
 SpriteRenderer:
@@ -233,6 +233,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355646798857723919}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.55, y: -2.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -241,7 +242,6 @@ Transform:
   - {fileID: 5187288970972880820}
   - {fileID: 3624978070363202348}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4443837800414157927
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   AttackSpeed: 10
   DodgeChance: 10
   Level: 1
-  Experience: 19
+  Experience: 41
   ExperienceToLevelUp: 10
   ActualAttackSpeed: 0
   _playerIsDead: 0
@@ -510,7 +510,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a4f4b5eb384a4f4fb9834156ddf3db7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 85d1422f2fbcd144eae3755b5c5dad57, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.282
   m_Pitch: 1
