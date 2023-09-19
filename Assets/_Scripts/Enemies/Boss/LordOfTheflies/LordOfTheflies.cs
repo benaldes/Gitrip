@@ -30,6 +30,8 @@ public class LordOfTheflies : AbstractEnemy
 
     void Start()
     {
+        _playerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+
         _currentPoint = transform.position;
         StartBossFight.Invoke(this, HP);
     }

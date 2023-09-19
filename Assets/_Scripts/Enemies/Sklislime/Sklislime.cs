@@ -20,7 +20,10 @@ public class Sklislime : AbstractEnemy
     [SerializeField] private Rigidbody2D _sklislimeRigidbody2D;
     [SerializeField] private AudioClip _sklislimeSplitSound;
     [SerializeField] private AudioSource _sklislimeAudioSource;
-
+    private void Start()
+    {
+        _player = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+    }
     public override void TakeDamage(int damage)
     {
         if (!_isDead) DamageNumbers(damage);

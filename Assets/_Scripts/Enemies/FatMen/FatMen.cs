@@ -23,7 +23,10 @@ public class FatMen : AbstractEnemy
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _explode;
     [SerializeField] private GameObject _explosion;
-
+    private void Start()
+    {
+        _playerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+    }
     public override void TakeDamage(int damage)
     {
         if (!_isDead) DamageNumbers(damage);
@@ -51,6 +54,7 @@ public class FatMen : AbstractEnemy
     private IEnumerator Explode()
     {
         _animator.SetTrigger("Explode");
+        _explosion.SetActive(true);
         _rigidbody2D.bodyType = RigidbodyType2D.Static;
         yield return new WaitForSeconds(ExplosionDelay);
         _explosion.SetActive(true);

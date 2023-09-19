@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Enemy : AbstractEnemy
 {
@@ -23,6 +24,7 @@ public class Enemy : AbstractEnemy
 
     void Start()
     {
+        _player = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
         _currentPoint = transform.position;
     }
     public override void TakeDamage(int damage)

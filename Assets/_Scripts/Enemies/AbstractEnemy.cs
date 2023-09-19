@@ -15,6 +15,7 @@ public abstract class AbstractEnemy: MonoBehaviour
         var dmgNum = Instantiate(_DamageNambersText, transform.position, Quaternion.identity, transform);
         dmgNum.GetComponent<TextMeshPro>().text = dmg.ToString();
 
+
     }
 
 }
